@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50CBDF7E1CA43B8800838044 /* jFlapHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50CBDF7C1CA43B8800838044 /* jFlapHandler.cpp */; };
 		50CBDF821CA43C5400838044 /* jflap-automat.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50CBDF801CA43C0F00838044 /* jflap-automat.jff */; };
+		50CBDF871CA4801800838044 /* jflap-automat-2.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50CBDF851CA47E0000838044 /* jflap-automat-2.jff */; };
+		50CBDF8C1CA4975100838044 /* automaton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50CBDF8A1CA4975100838044 /* automaton.cpp */; };
 		50D32A591C93159800C5626A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D32A581C93159800C5626A /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +20,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				50CBDF871CA4801800838044 /* jflap-automat-2.jff in CopyFiles */,
 				50CBDF821CA43C5400838044 /* jflap-automat.jff in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -26,9 +28,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		50CBDF7C1CA43B8800838044 /* jFlapHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jFlapHandler.cpp; path = "afj-assignment-2/lib/jFlapHandler.cpp"; sourceTree = "<group>"; };
-		50CBDF7D1CA43B8800838044 /* jFlapHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = jFlapHandler.hpp; path = "afj-assignment-2/lib/jFlapHandler.hpp"; sourceTree = "<group>"; };
 		50CBDF801CA43C0F00838044 /* jflap-automat.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-automat.jff"; path = "afj-assignment-2/data/jflap-automat.jff"; sourceTree = "<group>"; };
+		50CBDF851CA47E0000838044 /* jflap-automat-2.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-automat-2.jff"; path = "afj-assignment-2/data/jflap-automat-2.jff"; sourceTree = "<group>"; };
+		50CBDF861CA47F1D00838044 /* constants.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = constants.hpp; sourceTree = "<group>"; };
+		50CBDF891CA480A000838044 /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
+		50CBDF8A1CA4975100838044 /* automaton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = automaton.cpp; path = "afj-assignment-2/lib/automaton.cpp"; sourceTree = "<group>"; };
+		50CBDF8B1CA4975100838044 /* automaton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = automaton.hpp; path = "afj-assignment-2/lib/automaton.hpp"; sourceTree = "<group>"; };
 		50D32A551C93159800C5626A /* afj-assignment-2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "afj-assignment-2"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D32A581C93159800C5626A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,8 +52,8 @@
 		50CBDF7F1CA43B8D00838044 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				50CBDF7C1CA43B8800838044 /* jFlapHandler.cpp */,
-				50CBDF7D1CA43B8800838044 /* jFlapHandler.hpp */,
+				50CBDF8A1CA4975100838044 /* automaton.cpp */,
+				50CBDF8B1CA4975100838044 /* automaton.hpp */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -56,6 +61,7 @@
 		50CBDF811CA43C1400838044 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				50CBDF851CA47E0000838044 /* jflap-automat-2.jff */,
 				50CBDF801CA43C0F00838044 /* jflap-automat.jff */,
 			);
 			name = data;
@@ -83,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				50D32A581C93159800C5626A /* main.cpp */,
+				50CBDF861CA47F1D00838044 /* constants.hpp */,
+				50CBDF891CA480A000838044 /* types.hpp */,
 			);
 			path = "afj-assignment-2";
 			sourceTree = "<group>";
@@ -143,7 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50CBDF7E1CA43B8800838044 /* jFlapHandler.cpp in Sources */,
+				50CBDF8C1CA4975100838044 /* automaton.cpp in Sources */,
 				50D32A591C93159800C5626A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

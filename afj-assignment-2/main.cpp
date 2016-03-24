@@ -7,12 +7,18 @@
 //
 
 #include <iostream>
-#include "lib/jFlapHandler.hpp"
+#include <pugixml.hpp>
+#include "constants.hpp"
+#include "lib/automaton.hpp"
+
+using namespace pugi;
+using namespace std;
 
 int main(int argc, const char * argv[])
 {
 
     xml_document doc;
+    Automaton automata;
 
     if (!doc.load_file("./jflap-automat.jff")) return -1;
 
@@ -21,14 +27,19 @@ int main(int argc, const char * argv[])
 
     cout << structure.child_value("type") << endl;
 
-    for (xml_node state = automaton.child("state"); state; state = state.next_sibling("state"))
+    for (xml_node st = automaton.child("state"); st; st = st.next_sibling("state"))
     {
-        cout << state.name() << endl;
+        bool initial = st.child("initial");
+        bool final = st.child("final");
+        int id = st.attribute("id").as_int();
+        string name = st.attribute("name").as_string();
+
+        automata.addState(state(id, name, initial, final));
     }
 
-    for (xml_node transition = automaton.child("transition"); transition; transition = transition.next_sibling("transition"))
+    for (xml_node trans = automaton.child("transition"); trans; trans = trans.next_sibling("transition"))
     {
-        cout << transition.name() << endl;
+        //automata.addTransition(transition(<#int _from#>, <#int _to#>, <#std::string _input#>));
     }
 
     return 0;
