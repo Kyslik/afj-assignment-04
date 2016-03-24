@@ -64,9 +64,9 @@
 		50D32A4C1C93159800C5626A = {
 			isa = PBXGroup;
 			children = (
-				50CBDF811CA43C1400838044 /* data */,
-				50CBDF7F1CA43B8D00838044 /* lib */,
 				50D32A571C93159800C5626A /* afj-assignment-2 */,
+				50CBDF7F1CA43B8D00838044 /* lib */,
+				50CBDF811CA43C1400838044 /* data */,
 				50D32A561C93159800C5626A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -233,7 +233,10 @@
 		50D32A5D1C93159800C5626A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lpugixml";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -241,7 +244,10 @@
 		50D32A5E1C93159800C5626A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-lpugixml";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

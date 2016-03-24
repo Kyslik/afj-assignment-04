@@ -9,14 +9,18 @@
 #ifndef jFlapHandler_hpp
 #define jFlapHandler_hpp
 
-#include "pugixml.hpp"
+#include <pugixml.hpp>
 
-class jFlapHandler
-{
-  <#instance variables#>
+using namespace pugi;
+using namespace std;
 
-public:
-  <#member functions#>
-};
+
+//class jFlapHandler
+//{
+//
+//
+//public:
+//
+//};
 
 #endif /* jFlapHandler_hpp */
