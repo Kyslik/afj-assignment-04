@@ -11,6 +11,6 @@
 
 const std::string INPUT_FILE = "./jflap-automat.jff";
 const std::string OUTPUT_FILE = "./jflap-out.jff";
-const std::string EPSILON_STRING = "∑$e$∑";
+const std::string EPSILON_STRING = " ";
 
 #endif /* constants_h */

@@ -11,18 +11,27 @@
 
 #include <map>
 #include <vector>
+#include <string>
+
 
 #include "types.hpp"
 
 using namespace std;
 
-class Automaton {
+class Automaton
+{
+    map<string, bool> alphabet;
+    int initial_state = -1;
+
+
 public:
     map<int, state> states;
     vector<transition> transitions;
-
+    bool dfa = true;
+    
     inline void addState(state s)
     {
+        if (s.initial) initial_state = s.id;
         states.insert(pair<int, state>(s.id, s));
     }
 
@@ -54,9 +63,13 @@ public:
 
     void addTransition(transition t)
     {
+        alphabet[t.input] = true;
         transitions.push_back(t);
     }
 
-    void load(string file);
+    void determineType();
+    bool accepts(string word);
+
+
 };
 #endif /* automaton_hpp */

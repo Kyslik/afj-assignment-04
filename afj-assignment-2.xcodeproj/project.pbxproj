@@ -34,6 +34,8 @@
 		50CBDF891CA480A000838044 /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
 		50CBDF8A1CA4975100838044 /* automaton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = automaton.cpp; path = "afj-assignment-2/lib/automaton.cpp"; sourceTree = "<group>"; };
 		50CBDF8B1CA4975100838044 /* automaton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = automaton.hpp; path = "afj-assignment-2/lib/automaton.hpp"; sourceTree = "<group>"; };
+		50CBDF8D1CA577A500838044 /* jflap-automat-3.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-automat-3.jff"; path = "afj-assignment-2/data/jflap-automat-3.jff"; sourceTree = "<group>"; };
+		50CBDF8E1CA59A9B00838044 /* jflap-automat-4.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-automat-4.jff"; path = "afj-assignment-2/data/jflap-automat-4.jff"; sourceTree = "<group>"; };
 		50D32A551C93159800C5626A /* afj-assignment-2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "afj-assignment-2"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D32A581C93159800C5626A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +63,8 @@
 		50CBDF811CA43C1400838044 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				50CBDF8E1CA59A9B00838044 /* jflap-automat-4.jff */,
+				50CBDF8D1CA577A500838044 /* jflap-automat-3.jff */,
 				50CBDF851CA47E0000838044 /* jflap-automat-2.jff */,
 				50CBDF801CA43C0F00838044 /* jflap-automat.jff */,
 			);
