@@ -33,17 +33,30 @@ struct state
     bool initial;
     bool final;
     position jpos;
-
+    state() {}
     state(int _id, std::string _name, bool _initial = false, bool _final = false, position _jpos = position()) :
         id(_id), name(_name), initial(_initial), final(_final), jpos(_jpos) {}
+
+    bool operator < (const state& st) const
+    {
+        return (id < st.id);
+    }
 };
 
 struct transition
 {
     int from;
     int to;
+    bool epsilon;
     std::string input;
 
-    transition(int _from, int _to, std::string _input, bool _epsilon = false) : from(_from), to(_to), input(_input) {}
+    transition(int _from, int _to, std::string _input, bool _epsilon = false) : from(_from), to(_to), input(_input), epsilon(_epsilon) {}
+
+    bool operator < (const transition& t) const
+    {
+        return (from < t.from);
+    }
 };
+
+typedef std::vector<state> vstate;
 #endif /* types_h */

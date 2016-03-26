@@ -15,7 +15,6 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-
     xml_document doc;
     Automaton automata;
 
@@ -41,14 +40,22 @@ int main(int argc, const char * argv[])
         int from = atoi(string(trans.child_value("from")).c_str());
         int to = atoi(string(trans.child_value("to")).c_str());
         string input = trans.child_value("read");
-        if (input.empty()) input = EPSILON_STRING;
+        bool epsilon = false;
 
-        automata.addTransition(transition(from, to, input));
+        if (input.empty())
+        {
+            input = EPSILON_STRING;
+            epsilon = true;
+        }
+
+        automata.addTransition(transition(from, to, input, epsilon));
     }
+    
     automata.determineType();
     cout << automata.dfa << endl;
-    cout << automata.accepts("abcd") << endl;
-    cout << automata.accepts("") << endl;
+    
+    //cout << automata.accepts("abcd") << endl;
+    //cout << automata.accepts("") << endl;
 
     return 0;
 }

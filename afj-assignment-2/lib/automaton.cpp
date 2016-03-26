@@ -37,6 +37,60 @@ bool Automaton::accepts(string word)
     return false;
 }
 
+void Automaton::nka2dka()
+{
+    map<string, vstate> nstates;
+    vstate init = eClosure(states[initial_state]);
+    nstates[groupStateName(init)] = init;
+
+    
+}
+
+string Automaton::groupStateName(vstate vs)
+{
+    bool first = true;
+    string name = "";
+
+    for (const auto &s : vs)
+    {
+        if (!first) name += ", ";
+        else first = false;
+        name += s.name;
+    }
+    return name;
+}
+
+vstate Automaton::eClosure(state s)
+{
+    vstate rstates;
+    rstates.push_back(s);
+
+    for (const auto &t : transitions)
+    {
+        if (t.epsilon && s.id == t.from && !existsInVState(rstates, t.to))
+        {
+            vstate tmp = eClosure(states[t.to]);
+            rstates.insert(rstates.end(), tmp.begin(), tmp.end());
+        }
+    }
+    sort(rstates.begin(), rstates.end());
+    return rstates;
+}
+
+bool Automaton::existsInVState(vstate vs, int id)
+{
+    for (const auto &s : vs)
+    {
+        if (s.id == id) return true;
+    }
+    return  false;
+}
+
+bool Automaton::existsInVState(vstate vs, state s)
+{
+    return existsInVState(vs, s.id);
+}
+
 void Automaton::determineType()
 {
     dfa = true;

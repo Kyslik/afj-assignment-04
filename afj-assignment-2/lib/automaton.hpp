@@ -13,7 +13,6 @@
 #include <vector>
 #include <string>
 
-
 #include "types.hpp"
 
 using namespace std;
@@ -22,7 +21,6 @@ class Automaton
 {
     map<string, bool> alphabet;
     int initial_state = -1;
-
 
 public:
     map<int, state> states;
@@ -69,7 +67,13 @@ public:
 
     void determineType();
     bool accepts(string word);
+    void nka2dka();
 
-
+private:
+    vstate eClosure(state s);
+    string groupStateName(vstate vs);
+    bool existsInVState(vstate vs, int id);
+    bool existsInVState(vstate vs, state s);
 };
+
 #endif /* automaton_hpp */
