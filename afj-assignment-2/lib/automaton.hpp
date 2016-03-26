@@ -67,10 +67,12 @@ public:
 
     void determineType();
     bool accepts(string word);
-    void nka2dka();
+    void nfa2dfa();
 
 private:
     vstate eClosure(state s);
+    vstate transitionsTo(state s, string character);
+    vstate sortAndRemoveDuplicates(vstate rs);
     string groupStateName(vstate vs);
     bool existsInVState(vstate vs, int id);
     bool existsInVState(vstate vs, state s);

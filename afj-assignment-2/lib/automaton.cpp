@@ -18,7 +18,7 @@ bool Automaton::accepts(string word)
 
     for (auto &ch : word)
     {
-        string character = string(1, ch);
+        string character(1, ch);
         if (alphabet.find(character) == alphabet.end()) return false;
 
         for (const auto &transition : transitions)
@@ -37,13 +37,44 @@ bool Automaton::accepts(string word)
     return false;
 }
 
-void Automaton::nka2dka()
+void Automaton::nfa2dfa()
 {
     map<string, vstate> nstates;
     vstate init = eClosure(states[initial_state]);
     nstates[groupStateName(init)] = init;
 
-    
+    for (const auto &ns : nstates)
+    {
+        //vstate tmp;
+        for (const auto &s : ns.second)
+        {
+            for (auto &ch : alphabet)
+            {
+                if (ch.first == EPSILON_STRING) continue;
+                vstate t = transitionsTo(s, ch.first);
+                string sname = groupStateName(t);
+
+                if (nstates.find(sname) == nstates.end())
+                    nstates[sname] = t;
+            }
+        }
+    }
+    bool g = false;
+}
+
+vstate Automaton::transitionsTo(state s, const string character)
+{
+    vstate rstates;
+    for (const auto &transition : transitions)
+    {
+        if (transition.from != s.id || transition.input != character) continue;
+
+        rstates.push_back(states[transition.to]);
+        vstate tmp = eClosure(states[transition.to]);
+        rstates.insert(rstates.end(), tmp.begin(), tmp.end());
+    }
+
+    return sortAndRemoveDuplicates(rstates);
 }
 
 string Automaton::groupStateName(vstate vs)
@@ -73,8 +104,14 @@ vstate Automaton::eClosure(state s)
             rstates.insert(rstates.end(), tmp.begin(), tmp.end());
         }
     }
-    sort(rstates.begin(), rstates.end());
-    return rstates;
+    return sortAndRemoveDuplicates(rstates);
+}
+
+vstate Automaton::sortAndRemoveDuplicates(vstate rs)
+{
+    sort(rs.begin(), rs.end());
+    rs.erase( unique( rs.begin(), rs.end() ), rs.end() );
+    return rs;
 }
 
 bool Automaton::existsInVState(vstate vs, int id)

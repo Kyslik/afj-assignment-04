@@ -41,6 +41,18 @@ struct state
     {
         return (id < st.id);
     }
+
+    bool operator == (const state& st) const
+    {
+        return (id == st.id);
+    }
+
+    bool operator != (const state& st) const
+    {
+        return !(*this == st);
+    }
+
+
 };
 
 struct transition
