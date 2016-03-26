@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480714902.071005"
+            timestampString = "480716409.442673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "Automaton::eClosure(state s)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,28 +42,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480714899.924266"
+            timestampString = "480716409.442673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "Automaton::nfa2dfa()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Automaton::nfa2dfa()"
+                  moduleName = "afj-assignment-2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
+                  timestampString = "480716722.543133"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "3355">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Automaton::nfa2dfa()"
+                  moduleName = "afj-assignment-2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
+                  timestampString = "480716722.543372"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "4729">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Automaton::nfa2dfa()"
+                  moduleName = "afj-assignment-2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
+                  timestampString = "480716722.543477"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "6032">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480715009.692101"
+            timestampString = "480716409.442673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "Automaton::nfa2dfa()"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "Automaton::eClosure(state s)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

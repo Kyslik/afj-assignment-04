@@ -8,7 +8,6 @@
 
 #include "automaton.hpp"
 
-#include <iostream>
 
 bool Automaton::accepts(string word)
 {
@@ -45,21 +44,24 @@ void Automaton::nfa2dfa()
 
     for (const auto &ns : nstates)
     {
-        //vstate tmp;
-        for (const auto &s : ns.second)
+        for (auto &ch : alphabet)
         {
-            for (auto &ch : alphabet)
-            {
-                if (ch.first == EPSILON_STRING) continue;
-                vstate t = transitionsTo(s, ch.first);
-                string sname = groupStateName(t);
+            if (ch.first == EPSILON_STRING) continue;
+            vstate tmp;
 
-                if (nstates.find(sname) == nstates.end())
-                    nstates[sname] = t;
+            for (const auto &s : ns.second)
+            {
+                vstate t = transitionsTo(s, ch.first);
+                tmp.insert(tmp.end(), t.begin(), t.end());
             }
+
+            tmp = sortAndRemoveDuplicates(tmp);
+            string sname = groupStateName(tmp);
+
+            if (!sname.empty() && nstates.find(sname) == nstates.end())
+                nstates[sname] = tmp;
         }
     }
-    bool g = false;
 }
 
 vstate Automaton::transitionsTo(state s, const string character)
@@ -74,7 +76,7 @@ vstate Automaton::transitionsTo(state s, const string character)
         rstates.insert(rstates.end(), tmp.begin(), tmp.end());
     }
 
-    return sortAndRemoveDuplicates(rstates);
+    return rstates;
 }
 
 string Automaton::groupStateName(vstate vs)
