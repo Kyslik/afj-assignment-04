@@ -97,32 +97,48 @@ void Automaton::minimise()
 
     for (const auto &state_id : v_state_ids)
     {
-        for (const auto &id : state_id)
+        int from = state_id[0];
+        for (const auto &ch : alphabet)
         {
-            int from = 0;
+            if (ch.first == EPSILON_STRING) continue;
+            int to = transitionsToInt(from, ch.first);
 
             for (const auto &si : v_state_ids)
             {
-                if (find(si.begin(), si.end(), id) == si.end()) continue;
-                from = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
+                if (find(si.begin(), si.end(), to) == si.end()) continue;
+                to = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
                 break;
             }
 
-            for (const auto &ch : alphabet)
-            {
-                if (ch.first == EPSILON_STRING) continue;
-                int to = transitionsToInt(id, ch.first);
-
-                for (const auto &si : v_state_ids)
-                {
-                    if (find(si.begin(), si.end(), to) == si.end()) continue;
-                    to = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
-                    break;
-                }
-
-                ntransitions.push_back(transition(from, to, ch.first));
-            }
+            ntransitions.push_back(transition(from, to, ch.first));
         }
+
+//        for (const auto &id : state_id)
+//        {
+//            int from = 0;
+//
+//            for (const auto &si : v_state_ids)
+//            {
+//                if (find(si.begin(), si.end(), id) == si.end()) continue;
+//                from = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
+//                break;
+//            }
+//
+//            for (const auto &ch : alphabet)
+//            {
+//                if (ch.first == EPSILON_STRING) continue;
+//                int to = transitionsToInt(id, ch.first);
+//
+//                for (const auto &si : v_state_ids)
+//                {
+//                    if (find(si.begin(), si.end(), to) == si.end()) continue;
+//                    to = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
+//                    break;
+//                }
+//
+//                ntransitions.push_back(transition(from, to, ch.first));
+//            }
+//        }
     }
 
     states = nstates;
