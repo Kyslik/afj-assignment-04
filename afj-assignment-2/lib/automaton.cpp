@@ -36,7 +36,7 @@ bool Automaton::accepts(string word)
     return false;
 }
 
-void Automaton::minimise()
+void Automaton::minimize()
 {
     if (!dfa) return;
 
@@ -274,13 +274,13 @@ vstate Automaton::transitionsTo(int id, const string character)
 
 string Automaton::groupStateName(vstate vs)
 {
-    bool first = true;
+    //bool first = true;
     string name = "";
 
     for (const auto &s : vs)
     {
-        if (!first) name += ", ";
-        else first = false;
+        //if (!first) name += ",";
+        //else first = false;
         name += s.name;
     }
     return name;

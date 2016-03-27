@@ -70,7 +70,7 @@ public:
     bool    accepts(string word);
     void    nfa2dfa();
     void    removeUnreachableStates();
-    void    minimise();
+    void    minimize();
 
 private:
     vstate  eClosure(state s);
