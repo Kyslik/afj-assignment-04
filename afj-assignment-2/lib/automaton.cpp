@@ -36,6 +36,53 @@ bool Automaton::accepts(string word)
     return false;
 }
 
+void Automaton::minimise()
+{
+    vector<vector<int>> v_state_ids;
+    vector<int> final_states;
+    vector<int> non_final_states;
+
+    for (const auto &s : states)
+        if (s.second.final)
+            final_states.push_back(s.first);
+        else
+            non_final_states.push_back(s.first);
+
+    v_state_ids.push_back(non_final_states);
+    v_state_ids.push_back(final_states);
+
+    for (int i = 0; i < v_state_ids.size(); i++)
+    {
+        bool reset = false;
+        for (const auto &ch : alphabet)
+        {
+            if (ch.first == EPSILON_STRING || v_state_ids[i].size() == 1) continue;
+            vector<int> belongs;
+            vector<int> rest;
+            for (const auto &state_id : v_state_ids[i])
+            {
+                if (find(v_state_ids[i].begin(), v_state_ids[i].end(),
+                         transitionsToInt(state_id, ch.first)) != v_state_ids[i].end())
+                    belongs.push_back(state_id);
+                else
+                    rest.push_back(state_id);
+            }
+            
+            if (belongs.size() == v_state_ids[i].size() || rest.size() == v_state_ids[i].size()) continue;
+            v_state_ids.erase(v_state_ids.begin() + i);
+
+            if (belongs.size() != 0)
+                v_state_ids.push_back(belongs);
+            if (rest.size() != 0)
+            v_state_ids.push_back(rest);
+
+            reset = true;
+        }
+        if (reset) i--;
+    }
+    bool breakpoint = false;
+}
+
 void Automaton::removeUnreachableStates()
 {
     set<int> reachableStates;
@@ -67,11 +114,9 @@ void Automaton::removeUnreachableStates()
             reachableStates.find(tr.to) == reachableStates.end())
             transitionsToRemove.push_back(tr);
     }
+
     for (const auto &tr : transitionsToRemove)
-    {
         transitions.erase(remove(transitions.begin(), transitions.end(), tr), transitions.end());
-    }
-    //nfa2dfa();
 }
 
 void Automaton::nfa2dfa()
@@ -134,6 +179,16 @@ void Automaton::nfa2dfa()
     states = nstates;
     transitions = ntransitions;
     determineType();
+}
+
+int Automaton::transitionsToInt(int id, const string character)
+{
+    for (const auto &transition : transitions)
+    {
+        if (transition.from != id || transition.input != character) continue;
+        return transition.to;
+    }
+    return -1;
 }
 
 vstate Automaton::transitionsTo(state s, const string character)

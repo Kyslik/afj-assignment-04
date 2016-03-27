@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502E3CBF1CA807DF00978A1A /* jflap-automat-4.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50CBDF8E1CA59A9B00838044 /* jflap-automat-4.jff */; };
+		502E3CC01CA807DF00978A1A /* jflap-automat-3.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50CBDF8D1CA577A500838044 /* jflap-automat-3.jff */; };
 		50CBDF821CA43C5400838044 /* jflap-automat.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50CBDF801CA43C0F00838044 /* jflap-automat.jff */; };
 		50CBDF871CA4801800838044 /* jflap-automat-2.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 50CBDF851CA47E0000838044 /* jflap-automat-2.jff */; };
 		50CBDF8C1CA4975100838044 /* automaton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50CBDF8A1CA4975100838044 /* automaton.cpp */; };
@@ -20,6 +22,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				502E3CBF1CA807DF00978A1A /* jflap-automat-4.jff in CopyFiles */,
+				502E3CC01CA807DF00978A1A /* jflap-automat-3.jff in CopyFiles */,
 				50CBDF871CA4801800838044 /* jflap-automat-2.jff in CopyFiles */,
 				50CBDF821CA43C5400838044 /* jflap-automat.jff in CopyFiles */,
 			);

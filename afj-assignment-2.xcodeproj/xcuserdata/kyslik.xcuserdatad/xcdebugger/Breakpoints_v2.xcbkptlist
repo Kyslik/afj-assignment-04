@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480773521.106544"
+            timestampString = "480781582.345426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "Automaton::nfa2dfa()"
             landmarkType = "5">
             <Locations>
@@ -54,126 +54,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "afj-assignment-2/main.cpp"
-            timestampString = "480771757.918033"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480772538.78523"
+            timestampString = "480781582.345426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "Automaton::removeUnreachableStates()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480773521.106544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "Automaton::removeUnreachableStates()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Automaton::removeUnreachableStates()"
-                  moduleName = "afj-assignment-2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
-                  timestampString = "480773522.394442"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "3246">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Automaton::removeUnreachableStates()"
-                  moduleName = "afj-assignment-2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
-                  timestampString = "480773522.3946"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "4202">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Automaton::removeUnreachableStates()"
-                  moduleName = "afj-assignment-2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
-                  timestampString = "480773522.394725"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "4273">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Automaton::removeUnreachableStates()"
-                  moduleName = "afj-assignment-2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
-                  timestampString = "480773522.394848"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "6467">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Automaton::removeUnreachableStates()"
-                  moduleName = "afj-assignment-2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
-                  timestampString = "480773522.39497"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "9195">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -183,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/lib/automaton.cpp"
-            timestampString = "480773521.106544"
+            timestampString = "480781582.345426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "Automaton::removeUnreachableStates()"
             landmarkType = "5">
             <Locations>
@@ -227,7 +118,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-2/main.cpp"
@@ -238,6 +129,102 @@
             endingLineNumber = "58"
             landmarkName = "main(int argc, const char * argv[])"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "afj-assignment-2/main.cpp"
+            timestampString = "480774158.161317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "afj-assignment-2/lib/automaton.cpp"
+            timestampString = "480781582.345426"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "Automaton::minimise()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "afj-assignment-2/lib/automaton.cpp"
+            timestampString = "480781188.070796"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "Automaton::minimise()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Automaton::minimise()"
+                  moduleName = "afj-assignment-2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
+                  timestampString = "480781499.684675"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "3393">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Automaton::minimise()"
+                  moduleName = "afj-assignment-2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/afj-assignment-2/afj-assignment-2/lib/automaton.cpp"
+                  timestampString = "480781499.684846"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "4019">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "afj-assignment-2/lib/automaton.cpp"
+            timestampString = "480781308.821558"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "Automaton::minimise()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

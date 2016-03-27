@@ -66,20 +66,22 @@ public:
         transitions.push_back(t);
     }
 
-    void determineType();
-    bool accepts(string word);
-    void nfa2dfa();
-    void removeUnreachableStates();
+    void    determineType();
+    bool    accepts(string word);
+    void    nfa2dfa();
+    void    removeUnreachableStates();
+    void    minimise();
 
 private:
-    vstate eClosure(state s);
-    vstate transitionsTo(state s, string character);
-    vstate transitionsTo(int id, string character);
-    vstate sortAndRemoveDuplicates(vstate rs);
-    int vstateFind(vector<vstate> v, string s);
-    string groupStateName(vstate vs);
-    bool existsInVState(vstate vs, int id);
-    bool existsInVState(vstate vs, state s);
+    vstate  eClosure(state s);
+    vstate  transitionsTo(state s, const string character);
+    vstate  transitionsTo(int id, const string character);
+    int     transitionsToInt(int id, const string character);
+    vstate  sortAndRemoveDuplicates(vstate rs);
+    int     vstateFind(vector<vstate> v, string s);
+    string  groupStateName(vstate vs);
+    bool    existsInVState(vstate vs, int id);
+    bool    existsInVState(vstate vs, state s);
 
 };
 
