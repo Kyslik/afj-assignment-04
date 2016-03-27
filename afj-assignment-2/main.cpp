@@ -170,7 +170,10 @@ int loadAutomata(Automaton &a, const string in)
 void saveAutomata(Automaton &a, const string out)
 {
     using namespace pugi;
+
+    a.calculateXandY();
     xml_document doc;
+
     auto declarationNode = doc.append_child(node_declaration);
     declarationNode.append_attribute("version")    = "1.0";
     declarationNode.append_attribute("encoding")   = "UTF-8";
@@ -186,10 +189,10 @@ void saveAutomata(Automaton &a, const string out)
         xml_node state = n_automaton.append_child("state");
         state.append_attribute("id") = st.second.id;
         state.append_attribute("name") = st.second.name.c_str();
-        //        xml_node x = state.append_child("x");
-        //        xml_node y = state.append_child("y");
-        //        x.append_child(node_pcdata).set_value("0");
-        //        y.append_child(node_pcdata).set_value("0");
+            xml_node x = state.append_child("x");
+            xml_node y = state.append_child("y");
+            x.append_child(node_pcdata).set_value(to_string(st.second.jpos.x).c_str());
+            y.append_child(node_pcdata).set_value(to_string(st.second.jpos.y).c_str());
         if (st.second.initial)
             state.append_child("initial");
         if (st.second.final)

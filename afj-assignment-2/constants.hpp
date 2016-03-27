@@ -12,5 +12,6 @@
 const std::string INPUT_FILE = "./input_automat.jff";
 const std::string OUTPUT_FILE = "./output_automat.jff";
 const std::string EPSILON_STRING = " ";
+const int BOX_SIZE = 4*30;
 
 #endif /* constants_h */

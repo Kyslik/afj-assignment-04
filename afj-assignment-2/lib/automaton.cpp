@@ -9,6 +9,37 @@
 #include "automaton.hpp"
 
 
+
+void Automaton::calculateXandY()
+{
+    size_t state_count = states.size();
+    int rect_width = 0;
+    int rect_height = 0;
+
+    if (state_count/2 == (state_count/2)*2)
+    {
+        rect_width = (int) (state_count / 2) * BOX_SIZE;
+        rect_height = rect_width;
+    } else {
+        rect_width = (int) ((state_count / 2 ) + 1) * BOX_SIZE;
+        rect_height = (int) (state_count / 2) * BOX_SIZE;
+    }
+
+    position rect_center(rect_width/2 , rect_height/2);
+
+    double slice = 2 * M_PI / state_count;
+    double radius = 20 * (int) state_count;
+    int i = 0;
+
+    for (auto &state : states)
+    {
+        double angle = slice * i;
+        state.second.jpos.x = (int)(rect_center.x + radius * cos(angle));
+        state.second.jpos.y = (int)(rect_center.y + radius * sin(angle));
+        i++;
+    }
+}
+
 bool Automaton::accepts(string word)
 {
     if (initial_state == -1 || dfa == false) return false;

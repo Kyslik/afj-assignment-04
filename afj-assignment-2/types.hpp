@@ -24,6 +24,12 @@ struct position
         y = 0;
     }
     position(int _x, int _y) : x(_x), y(_y) {}
+    position& operator =(const position& a)
+    {
+        x = a.x;
+        y = a.y;
+        return *this;
+    }
 };
 
 struct state

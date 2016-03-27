@@ -13,6 +13,8 @@
 #include <set>
 #include <vector>
 #include <string>
+#include <math.h>
+
 
 #include "types.hpp"
 
@@ -71,6 +73,7 @@ public:
     void    nfa2dfa();
     void    removeUnreachableStates();
     void    minimize();
+    void    calculateXandY();
 
 private:
     vstate  eClosure(state s);
