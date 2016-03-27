@@ -38,30 +38,73 @@ bool Automaton::accepts(string word)
 
 void Automaton::nfa2dfa()
 {
-    map<string, vstate> nstates;
-    vstate init = eClosure(states[initial_state]);
-    nstates[groupStateName(init)] = init;
+    vector<vstate> vstates;
+    vector<transition> ntransitions;
+    map<int, state> nstates;
 
-    for (const auto &ns : nstates)
+    vstate init = eClosure(states[initial_state]);
+    vstates.push_back(init);
+
+    initial_state = 0;
+    bool final = false;
+
+    for (const auto &in : init)
+        if (in.final) final = true;
+
+    nstates[initial_state] = state(initial_state, groupStateName(init), true, final);
+    int from = 0;
+    for (int i = 0; i < vstates.size(); i++)
     {
         for (auto &ch : alphabet)
         {
             if (ch.first == EPSILON_STRING) continue;
             vstate tmp;
+            bool final = false;
 
-            for (const auto &s : ns.second)
+            for (const auto &s : vstates[i])
             {
                 vstate t = transitionsTo(s, ch.first);
                 tmp.insert(tmp.end(), t.begin(), t.end());
             }
 
+            for (const auto &t : tmp)
+                if (t.final) final = true;
+
             tmp = sortAndRemoveDuplicates(tmp);
             string sname = groupStateName(tmp);
 
-            if (!sname.empty() && nstates.find(sname) == nstates.end())
-                nstates[sname] = tmp;
+            if (sname.empty()) continue;
+
+            int it = vstateFind(vstates, sname);
+            int to = 0;
+            if (it == -1)
+            {
+                //state does not exists create it
+                int id = (int) vstates.size();
+                nstates[id] = state(id, sname, false, final);
+                vstates.push_back(tmp);
+                to = id;
+            } else {
+                to = it;
+            }
+            ntransitions.push_back(transition(from, to, ch.first, false));
         }
+        from++;
     }
+
+    
+
+    states = nstates;
+    transitions = ntransitions;
+    determineType();
+}
+
+int Automaton::vstateFind(vector<vstate> vs, string s)
+{
+    for (int i = 0; i < vs.size(); i++)
+        if (s == groupStateName(vs[i])) return i;
+
+    return -1;
 }
 
 vstate Automaton::transitionsTo(state s, const string character)

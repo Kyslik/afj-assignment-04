@@ -10,6 +10,7 @@
 #define automaton_hpp
 
 #include <map>
+#include <unordered_map>
 #include <vector>
 #include <string>
 
@@ -73,6 +74,7 @@ private:
     vstate eClosure(state s);
     vstate transitionsTo(state s, string character);
     vstate sortAndRemoveDuplicates(vstate rs);
+    int vstateFind(vector<vstate> v, string s);
     string groupStateName(vstate vs);
     bool existsInVState(vstate vs, int id);
     bool existsInVState(vstate vs, state s);

@@ -54,7 +54,8 @@ int main(int argc, const char * argv[])
     automata.determineType();
     cout << automata.dfa << endl;
     automata.nfa2dfa();
-    //cout << automata.accepts("abcd") << endl;
+    cout << automata.dfa << endl;
+    cout << automata.accepts("abcd") << endl;
     //cout << automata.accepts("") << endl;
 
     return 0;
