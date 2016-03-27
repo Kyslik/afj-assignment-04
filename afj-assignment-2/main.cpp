@@ -98,8 +98,9 @@ int main (int argc, char *argv[])
         automata.minimize();
         cout << "\t minimizing..." << endl;
         cout << "\t Min DFA count of states: " << automata.states.size() << endl;
-        cout << "\t Min DFA count of transitions" <<automata.transitions.size() << endl;
+        cout << "\t Min DFA count of transitions: " <<automata.transitions.size() << endl;
         cout << endl;
+        saveAutomata(automata, output_file);
         cout << "Minimized automaton saved to: \"" << output_file << "\"" << endl;
         return 0;
     }
@@ -114,7 +115,7 @@ void showHelp(char *s)
     cout << "option:  " << "-h  show help" << endl;
     cout << "         " << "-i  [FILE] input file (xml format) / default \"" << INPUT_FILE << "\"" << endl;
     cout << "         " << "-o  [FILE] output file (xml format) / default \"" << OUTPUT_FILE << "\"" << endl;
-    cout << "         " << "-w  [WORD] input word" << endl;
+    cout << "         " << "-w  [WORD] input word (epsilon character is SPACE)" << endl;
     cout << "         " << "WARNING: output file is always REWRITTEN" << endl;
     cout << endl;
     cout << "NFA - non deterministic finite automaton" << endl;

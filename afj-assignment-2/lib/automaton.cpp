@@ -15,6 +15,7 @@ bool Automaton::accepts(string word)
     int current_state = initial_state;
     int transitions_traversed = 0;
 
+    if (word.size() == 1 && states[initial_state].final && word == EPSILON_STRING) return true;
     for (auto &ch : word)
     {
         string character(1, ch);
