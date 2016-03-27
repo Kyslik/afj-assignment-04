@@ -38,9 +38,14 @@ bool Automaton::accepts(string word)
 
 void Automaton::minimise()
 {
+    if (!dfa) return;
+
     vector<vector<int>> v_state_ids;
     vector<int> final_states;
     vector<int> non_final_states;
+
+    vector<transition> ntransitions;
+    map<int, state> nstates;
 
     for (const auto &s : states)
         if (s.second.final)
@@ -80,7 +85,48 @@ void Automaton::minimise()
         }
         if (reset) i--;
     }
-    bool breakpoint = false;
+
+    for (const auto &state_id : v_state_ids)
+    {
+        if (state_id.size() == 1) nstates[state_id[0]] = states[state_id[0]];
+        else {
+            int id = (int) distance(state_id.begin(), min_element(state_id.begin(), state_id.end()));
+            nstates[state_id[id]] = states[state_id[id]];
+        }
+    }
+
+    for (const auto &state_id : v_state_ids)
+    {
+        for (const auto &id : state_id)
+        {
+            int from = 0;
+
+            for (const auto &si : v_state_ids)
+            {
+                if (find(si.begin(), si.end(), id) == si.end()) continue;
+                from = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
+                break;
+            }
+
+            for (const auto &ch : alphabet)
+            {
+                if (ch.first == EPSILON_STRING) continue;
+                int to = transitionsToInt(id, ch.first);
+
+                for (const auto &si : v_state_ids)
+                {
+                    if (find(si.begin(), si.end(), to) == si.end()) continue;
+                    to = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
+                    break;
+                }
+
+                ntransitions.push_back(transition(from, to, ch.first));
+            }
+        }
+    }
+
+    states = nstates;
+    transitions = ntransitions;
 }
 
 void Automaton::removeUnreachableStates()

@@ -52,7 +52,6 @@ int main(int argc, const char * argv[])
     }
     
     automata.determineType();
-    cout << automata.dfa << endl;
     automata.nfa2dfa();
     automata.minimise();
     cout << automata.dfa << endl;
