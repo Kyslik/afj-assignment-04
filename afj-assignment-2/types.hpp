@@ -68,6 +68,16 @@ struct transition
     {
         return (from < t.from);
     }
+
+    bool operator == (const transition& t) const
+    {
+        return (from == t.from && to == t.to && epsilon == t.epsilon && input == t.input);
+    }
+
+    bool operator != (const transition& t) const
+    {
+        return !(*this == t);
+    }
 };
 
 typedef std::vector<state> vstate;

@@ -9,7 +9,7 @@
 #ifndef constants_h
 #define constants_h
 
-const std::string INPUT_FILE = "./jflap-automat.jff";
+const std::string INPUT_FILE = "./jflap-automat-2.jff";
 const std::string OUTPUT_FILE = "./jflap-out.jff";
 const std::string EPSILON_STRING = " ";
 

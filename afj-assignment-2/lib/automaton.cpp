@@ -36,6 +36,44 @@ bool Automaton::accepts(string word)
     return false;
 }
 
+void Automaton::removeUnreachableStates()
+{
+    set<int> reachableStates;
+    reachableStates.insert(initial_state);
+
+    for (const auto &st : reachableStates) {
+        for (auto &ch : alphabet)
+        {
+            if (ch.first == EPSILON_STRING) continue;
+            vstate tmp = sortAndRemoveDuplicates(transitionsTo(st, ch.first));
+            for (const auto &t : tmp)
+                reachableStates.insert(t.id);
+        }
+    }
+
+    if (reachableStates.size() == states.size()) return;
+
+    vector<int> statesToRemove;
+    for (const auto &st : states)
+        if (reachableStates.find(st.first) == reachableStates.end()) statesToRemove.push_back(st.first);
+
+    for (const auto &st : statesToRemove)
+        removeState(st);
+
+    vector<transition> transitionsToRemove;
+    for (const auto &tr : transitions)
+    {
+        if (reachableStates.find(tr.from) == reachableStates.end() ||
+            reachableStates.find(tr.to) == reachableStates.end())
+            transitionsToRemove.push_back(tr);
+    }
+    for (const auto &tr : transitionsToRemove)
+    {
+        transitions.erase(remove(transitions.begin(), transitions.end(), tr), transitions.end());
+    }
+    //nfa2dfa();
+}
+
 void Automaton::nfa2dfa()
 {
     vector<vstate> vstates;
@@ -77,9 +115,9 @@ void Automaton::nfa2dfa()
 
             int it = vstateFind(vstates, sname);
             int to = 0;
+
             if (it == -1)
             {
-                //state does not exists create it
                 int id = (int) vstates.size();
                 nstates[id] = state(id, sname, false, final);
                 vstates.push_back(tmp);
@@ -87,38 +125,33 @@ void Automaton::nfa2dfa()
             } else {
                 to = it;
             }
+
             ntransitions.push_back(transition(from, to, ch.first, false));
         }
         from++;
     }
-
-    
 
     states = nstates;
     transitions = ntransitions;
     determineType();
 }
 
-int Automaton::vstateFind(vector<vstate> vs, string s)
+vstate Automaton::transitionsTo(state s, const string character)
 {
-    for (int i = 0; i < vs.size(); i++)
-        if (s == groupStateName(vs[i])) return i;
-
-    return -1;
+    return transitionsTo(s.id, character);
 }
 
-vstate Automaton::transitionsTo(state s, const string character)
+vstate Automaton::transitionsTo(int id, const string character)
 {
     vstate rstates;
     for (const auto &transition : transitions)
     {
-        if (transition.from != s.id || transition.input != character) continue;
+        if (transition.from != id || transition.input != character) continue;
 
         rstates.push_back(states[transition.to]);
         vstate tmp = eClosure(states[transition.to]);
         rstates.insert(rstates.end(), tmp.begin(), tmp.end());
     }
-
     return rstates;
 }
 
@@ -157,6 +190,13 @@ vstate Automaton::sortAndRemoveDuplicates(vstate rs)
     sort(rs.begin(), rs.end());
     rs.erase( unique( rs.begin(), rs.end() ), rs.end() );
     return rs;
+}
+
+int Automaton::vstateFind(vector<vstate> vs, string s)
+{
+    for (int i = 0; i < vs.size(); i++)
+        if (s == groupStateName(vs[i])) return i;
+    return -1;
 }
 
 bool Automaton::existsInVState(vstate vs, int id)

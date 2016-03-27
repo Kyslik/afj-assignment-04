@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
     xml_document doc;
     Automaton automata;
 
-    if (!doc.load_file("./jflap-automat.jff")) return -1;
+    if (!doc.load_file("./jflap-automat-2.jff")) return -1;
 
     xml_node structure = doc.child("structure");
     xml_node automaton = structure.child("automaton");
@@ -54,6 +54,7 @@ int main(int argc, const char * argv[])
     automata.determineType();
     cout << automata.dfa << endl;
     automata.nfa2dfa();
+    automata.removeUnreachableStates();
     cout << automata.dfa << endl;
     cout << automata.accepts("abcd") << endl;
     //cout << automata.accepts("") << endl;

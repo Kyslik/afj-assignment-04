@@ -10,7 +10,7 @@
 #define automaton_hpp
 
 #include <map>
-#include <unordered_map>
+#include <set>
 #include <vector>
 #include <string>
 
@@ -69,15 +69,18 @@ public:
     void determineType();
     bool accepts(string word);
     void nfa2dfa();
+    void removeUnreachableStates();
 
 private:
     vstate eClosure(state s);
     vstate transitionsTo(state s, string character);
+    vstate transitionsTo(int id, string character);
     vstate sortAndRemoveDuplicates(vstate rs);
     int vstateFind(vector<vstate> v, string s);
     string groupStateName(vstate vs);
     bool existsInVState(vstate vs, int id);
     bool existsInVState(vstate vs, state s);
+
 };
 
 #endif /* automaton_hpp */
