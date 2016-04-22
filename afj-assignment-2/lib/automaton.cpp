@@ -141,7 +141,8 @@ void Automaton::minimize()
                 to = si[(int) distance(si.begin(), min_element(si.begin(), si.end()))];
                 break;
             }
-
+            if (to == -1) continue;
+            
             ntransitions.push_back(transition(from, to, ch.first));
         }
 
