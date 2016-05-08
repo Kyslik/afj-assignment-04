@@ -16,11 +16,12 @@
 using namespace std;
 
 void showHelp(char *s);
-int loadAutomata(Automaton &a, const string in);
-void saveAutomata(Automaton &a, const string out);
+int loadAutomata(afj_4::automaton::Automaton &a, const string in);
+void saveAutomata(afj_4::automaton::Automaton &a, const string out);
 
 int main (int argc, char *argv[])
 {
+    using afj_4::automaton::Automaton;
 
     if (argc == 1) {
         showHelp(argv[0]);
@@ -127,7 +128,7 @@ void showHelp(char *s)
     cout << endl;
 }
 
-int loadAutomata(Automaton &a, const string in)
+int loadAutomata(afj_4::automaton::Automaton &a, const string in)
 {
     using namespace pugi;
     xml_document doc;
@@ -145,7 +146,7 @@ int loadAutomata(Automaton &a, const string in)
         int id = st.attribute("id").as_int();
         string name = st.attribute("name").as_string();
 
-        a.addState(state(id, name, initial, final));
+        a.addState(afj_4::types::state(id, name, initial, final));
     }
 
     for (xml_node trans = automaton.child("transition"); trans; trans = trans.next_sibling("transition"))
@@ -161,13 +162,13 @@ int loadAutomata(Automaton &a, const string in)
             epsilon = true;
         }
 
-        a.addTransition(transition(from, to, input, epsilon));
+        a.addTransition(afj_4::types::transition(from, to, input, epsilon));
     }
 
     return 0;
 }
 
-void saveAutomata(Automaton &a, const string out)
+void saveAutomata(afj_4::automaton::Automaton &a, const string out)
 {
     using namespace pugi;
 

@@ -17,75 +17,77 @@
 
 
 #include "types.hpp"
-
-using namespace std;
-
-class Automaton
+namespace afj_4
 {
-    map<string, bool> alphabet;
-    int initial_state = -1;
-
-public:
-    map<int, state> states;
-    vector<transition> transitions;
-    bool dfa = true;
-    
-    inline void addState(state s)
+namespace automaton
+{
+    class Automaton
     {
-        if (s.initial) initial_state = s.id;
-        states.insert(pair<int, state>(s.id, s));
-    }
+        std::map<std::string, bool> alphabet;
+        int initial_state = -1;
 
-    inline void removeState(state s)
-    {
-        removeState(s.id);
-    }
+    public:
+        std::map<int, types::state> states;
+        std::vector<types::transition> transitions;
+        bool dfa = true;
 
-    inline void removeState(int i)
-    {
-        states.erase(i);
-    }
+        inline void addState(types::state s)
+        {
+            if (s.initial) initial_state = s.id;
+            states.insert(std::pair<int, types::state>(s.id, s));
+        }
 
-    inline bool existState(int i)
-    {
-        if (states.find(i) == states.end()) return false;
-        return true;
-    }
+        inline void removeState(types::state s)
+        {
+            removeState(s.id);
+        }
 
-    inline bool existState(state s)
-    {
-        return existState(s.id);
-    }
-    
-    inline state findState(int i)
-    {
-        return states.find(i)->second;
-    }
+        inline void removeState(int i)
+        {
+            states.erase(i);
+        }
 
-    void addTransition(transition t)
-    {
-        alphabet[t.input] = true;
-        transitions.push_back(t);
-    }
+        inline bool existState(int i)
+        {
+            if (states.find(i) == states.end()) return false;
+            return true;
+        }
 
-    void    determineType();
-    bool    accepts(string word);
-    void    nfa2dfa();
-    void    removeUnreachableStates();
-    void    minimize();
-    void    calculateXandY();
+        inline bool existState(types::state s)
+        {
+            return existState(s.id);
+        }
 
-private:
-    vstate  eClosure(state s);
-    vstate  transitionsTo(state s, const string character);
-    vstate  transitionsTo(int id, const string character);
-    int     transitionsToInt(int id, const string character);
-    vstate  sortAndRemoveDuplicates(vstate rs);
-    int     vstateFind(vector<vstate> v, string s);
-    string  groupStateName(vstate vs);
-    bool    existsInVState(vstate vs, int id);
-    bool    existsInVState(vstate vs, state s);
+        inline types::state findState(int i)
+        {
+            return states.find(i)->second;
+        }
 
-};
+        void addTransition(types::transition t)
+        {
+            alphabet[t.input] = true;
+            transitions.push_back(t);
+        }
 
+        void    determineType();
+        bool    accepts(std::string word);
+        void    nfa2dfa();
+        void    removeUnreachableStates();
+        void    minimize();
+        void    calculateXandY();
+
+    private:
+        types::vstate   eClosure(types::state s);
+        types::vstate   transitionsTo(types::state s, const std::string character);
+        types::vstate   transitionsTo(int id, const std::string character);
+        int             transitionsToInt(int id, const std::string character);
+        types::vstate   sortAndRemoveDuplicates(types::vstate rs);
+        int             vstateFind(std::vector<types::vstate> v, std::string s);
+        std::string     groupStateName(types::vstate vs);
+        bool            existsInVState(types::vstate vs, int id);
+        bool            existsInVState(types::vstate vs, types::state s);
+        
+    };
+}
+}
 #endif /* automaton_hpp */

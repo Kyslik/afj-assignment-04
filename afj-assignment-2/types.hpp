@@ -13,78 +13,84 @@
 #include <string>
 #include "constants.hpp"
 
-struct position
+namespace afj_4
 {
-    int x;
-    int y;
-
-    position()
-    {
-        x = 0;
-        y = 0;
-    }
-    position(int _x, int _y) : x(_x), y(_y) {}
-    position& operator =(const position& a)
-    {
-        x = a.x;
-        y = a.y;
-        return *this;
-    }
-};
-
-struct state
+namespace types
 {
-    int id;
-    std::string name;
-    bool initial;
-    bool final;
-    position jpos;
-    state() {}
-    state(int _id, std::string _name, bool _initial = false, bool _final = false, position _jpos = position()) :
-        id(_id), name(_name), initial(_initial), final(_final), jpos(_jpos) {}
-
-    bool operator < (const state& st) const
+    struct position
     {
-        return (id < st.id);
-    }
+        int x,
+            y;
 
-    bool operator == (const state& st) const
+        position()
+        {
+            x = 0;
+            y = 0;
+        }
+        position(int x, int y) : x(x), y(y) {}
+        position& operator =(const position& a)
+        {
+            x = a.x;
+            y = a.y;
+            return *this;
+        }
+    };
+
+    struct state
     {
-        return (id == st.id);
-    }
+        int id;
+        bool initial,
+             final;
 
-    bool operator != (const state& st) const
+        std::string name;
+        position jpos;
+
+        state() {}
+        state(int id, std::string name, bool initial = false, bool final = false, position jpos = position()) :
+        id(id), name(name), initial(initial), final(final), jpos(jpos) {}
+
+        bool operator < (const state& st) const
+        {
+            return (id < st.id);
+        }
+
+        bool operator == (const state& st) const
+        {
+            return (id == st.id);
+        }
+
+        bool operator != (const state& st) const
+        {
+            return !(*this == st);
+        }
+    };
+
+    struct transition
     {
-        return !(*this == st);
-    }
+        int from,
+        to;
+        bool epsilon;
 
+        std::string input;
 
-};
+        transition(int from, int to, std::string input, bool epsilon = false) : from(from), to(to), input(input), epsilon(epsilon) {}
 
-struct transition
-{
-    int from;
-    int to;
-    bool epsilon;
-    std::string input;
-
-    transition(int _from, int _to, std::string _input, bool _epsilon = false) : from(_from), to(_to), input(_input), epsilon(_epsilon) {}
-
-    bool operator < (const transition& t) const
-    {
-        return (from < t.from);
-    }
-
-    bool operator == (const transition& t) const
-    {
-        return (from == t.from && to == t.to && epsilon == t.epsilon && input == t.input);
-    }
-
-    bool operator != (const transition& t) const
-    {
-        return !(*this == t);
-    }
-};
-
-typedef std::vector<state> vstate;
+        bool operator < (const transition& t) const
+        {
+            return (from < t.from);
+        }
+        
+        bool operator == (const transition& t) const
+        {
+            return (from == t.from && to == t.to && epsilon == t.epsilon && input == t.input);
+        }
+        
+        bool operator != (const transition& t) const
+        {
+            return !(*this == t);
+        }
+    };
+    typedef std::vector<state> vstate;
+}
+}
 #endif /* types_h */
