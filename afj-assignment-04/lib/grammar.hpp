@@ -18,46 +18,37 @@ namespace afj_4
 {
     namespace grammar
     {
-        typedef std::set<std::string> StringSet;
         using types::uint;
+
+        typedef std::set<std::string> StringSet;
+        
         class Grammar
         {
-            types::Rules rules;
-            StringSet terminals, nonterminals;
+            types::Rules _rules;
+            types::StringToTerminalSetMap _firsts;
 
+            StringSet _terminals, _nonterminals;
+
+            void computeFirst(const types::Rule &rule);
         public:
             Grammar();
-            Grammar(const types::Rules &rules) : rules(rules) {};
-            void pushRule(const types::Rule &rule)
+            Grammar(const types::Rules &rules) : _rules(rules) {};
+
+            inline void pushRule(const types::Rule &rule)
             {
-                rules.push_back(rule);
+                _rules.push_back(rule);
             }
 
-            void addTerminal(const std::string &terminal)
+            inline void addNonterminal(const std::string &nonterminal)
             {
-                if (terminal.length() == 1 && nonterminals.find(terminal) == nonterminals.end())
-                    terminals.insert(terminal);
-                if (terminal.length() != 1)
-                {
-                    for (uint i = 0; i < terminal.length(); i++)
-                    {
-                        std::string str("");
-                        str += terminal.at(i);
+                if (_terminals.find(nonterminal) != _terminals.end())
+                    _terminals.erase(_terminals.find(nonterminal));
+                _nonterminals.insert(nonterminal);
+            }
 
-                        addTerminal(str);
-                    }
-                }
-                if (terminal.empty()) terminals.insert(EPSILON);
-            };
-
-            void addNonterminal(const std::string &nonterminal)
-            {
-                if (terminals.find(nonterminal) != terminals.end())
-                {
-                    terminals.erase(terminals.find(nonterminal));
-                }
-                nonterminals.insert(nonterminal);
-            };
+            void addTerminal(const std::string &terminal);
+            void computeFirst();
+            void displayFirst();
         };
     }
 }

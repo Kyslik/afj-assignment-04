@@ -79,6 +79,8 @@ int main (int argc, char *argv[])
         }
     }
 
+    grammar.computeFirst();
+    grammar.displayFirst();
     return 0;
 }
 

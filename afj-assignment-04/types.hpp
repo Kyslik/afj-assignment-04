@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #define TERMINAL    0
 #define NONTERMINAL 1
@@ -36,6 +37,16 @@ namespace types
                 is_epsilon(epsilon),
                 is_empty (false) {}
 
+        bool operator < (const Terminal& terminal) const
+        {
+            return (value < terminal.value);
+        }
+
+        bool operator > (const Terminal& terminal) const
+        {
+            return !(*this < terminal);
+        }
+
         bool operator == (const Terminal& terminal) const
         {
             return (value == terminal.value && is_epsilon == terminal.is_epsilon && is_empty == terminal.is_empty);
@@ -48,6 +59,8 @@ namespace types
     };
 
     typedef std::vector<Terminal> Terminals;
+    typedef std::set<Terminal> TerminalSet;
+    typedef std::map<std::string, TerminalSet> StringToTerminalSetMap;
 
     struct Nonterminal
     {
@@ -162,7 +175,7 @@ namespace types
         {
             left = nonterminal;
             if (_right.size() == 0)
-                pushUnional(Unional(Terminal("", true)));
+                pushUnional(Unional(Terminal(EPSILON, true))); // "" to EPSILON
 
             for(uint i = 0; i < _right.length(); i++)
             {

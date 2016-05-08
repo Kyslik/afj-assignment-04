@@ -21,4 +21,20 @@
 		<left>B</left>
 		<right/>
 	</production>
+	<production>
+		<left>B</left>
+		<right>AB</right>
+	</production>
+	<production>
+		<left>D</left>
+		<right>S</right>
+	</production>
+	<production>
+		<left>D</left>
+		<right>abB</right>
+	</production>
+	<production>
+		<left>B</left>
+		<right>D</right>
+	</production>
 </structure>
