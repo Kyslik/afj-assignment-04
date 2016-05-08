@@ -11,20 +11,22 @@
 #include <sys/stat.h>
 #include <pugixml.hpp>
 
-#include "lib/automaton.hpp"
+#include "lib/grammar.hpp"
 
-
-using namespace std;
+const std::string INPUT_FILE = "./jflap-grammar.jff";
+const std::string OUTPUT_FILE = "./out.txt";
 
 void showHelp(char *s);
-int loadAutomata(afj_4::automaton::Automaton &a, const string in);
-void saveAutomata(afj_4::automaton::Automaton &a, const string out);
+uint loadAutomata(afj_4::grammar::Grammar &grammar, const std::string &in);
 
 int main (int argc, char *argv[])
 {
-    using afj_4::automaton::Automaton;
+    using std::cout;
+    using std::endl;
+    using std::string;
 
-    if (argc == 1) {
+    if (argc == 1)
+    {
         showHelp(argv[0]);
         return 0;
     }
@@ -56,63 +58,35 @@ int main (int argc, char *argv[])
         }
     }
 
-    Automaton automata;
+    afj_4::types::Rules rules;
+    afj_4::grammar::Grammar grammar(rules);
 
     if (input_file.empty()) input_file = INPUT_FILE;
-    if (output_file.empty()) output_file = OUTPUT_FILE;
 
-    int load = loadAutomata(automata, input_file);
-    if (load == 1) {
-        cout << "File \"" << input_file << "\" does not exist." << endl;
-        return 1;
-    }
-
-    if (load == 2)
     {
-        cout << "Automaton \"" << input_file << "\" is not \"fa\" type." << endl;
-        return 2;
+        int load = loadAutomata(grammar, input_file);
+
+        if (load == 1)
+        {
+            cout << "File \"" << input_file << "\" does not exist." << endl;
+            return 1;
+        }
+
+        if (load == 2)
+        {
+            cout << "Automaton \"" << input_file << "\" is not \"grammar\" type." << endl;
+            return 2;
+        }
     }
 
-    automata.determineType();
-    cout << "Automata type: " << ((automata.dfa) ? "DFA" : "NFA") << endl;
-
-    if (!automata.dfa)
-    {
-        cout << "Converting NFA to DFA:" << endl;
-        cout << "\t NFA count of states: " << automata.states.size() << endl;
-        cout << "\t NFA count of transitions: " << automata.transitions.size() << endl;
-        automata.nfa2dfa();
-        cout << "\t DFA count of states: " << automata.states.size() << endl;
-        cout << "\t DFA count of transitions: " << automata.transitions.size() << endl;
-        saveAutomata(automata, output_file);
-        cout << endl;
-        cout << "Automaton saved to: \"" << output_file << "\"" << endl;
-        return 0;
-    }
-
-    if (word.empty())
-    {
-        cout << "Mnimizing DFA:" << endl;
-        cout << "\t DFA count of states: " << automata.states.size() << endl;
-        cout << "\t DFA count of transitions: " << automata.transitions.size() << endl;
-        cout << "\t removing unreachable states..." << endl;
-        automata.removeUnreachableStates();
-        automata.minimize();
-        cout << "\t minimizing..." << endl;
-        cout << "\t Min DFA count of states: " << automata.states.size() << endl;
-        cout << "\t Min DFA count of transitions: " <<automata.transitions.size() << endl;
-        cout << endl;
-        saveAutomata(automata, output_file);
-        cout << "Minimized automaton saved to: \"" << output_file << "\"" << endl;
-        return 0;
-    }
-    cout << "Checking word \"" << word << "\": " << endl;
-    cout << (automata.accepts(word) ? "ACCEPTS" : "REJECTS") << endl;
     return 0;
 }
 
 void showHelp(char *s)
 {
+    using std::cout;
+    using std::endl;
+
     cout << "Usage:   " << s << " [-option] [argument]" << endl;
     cout << "option:  " << "-h  show help" << endl;
     cout << "         " << "-i  [FILE] input file (xml format) / default \"" << INPUT_FILE << "\"" << endl;
@@ -120,96 +94,38 @@ void showHelp(char *s)
     cout << "         " << "-w  [WORD] input word (epsilon character is SPACE)" << endl;
     cout << "         " << "WARNING: output file is always REWRITTEN" << endl;
     cout << endl;
-    cout << "NFA - non deterministic finite automaton" << endl;
-    cout << "DFA - deterministic finite automaton" << endl;
-    cout << "Program checks if input (-i [default=\"" << INPUT_FILE << "\"]) automaton is NFA or DFA:" << endl;
-    cout << "\t NFA - program converts automaton to DFA and saves it to output file (-o [default=\"" << OUTPUT_FILE << "\"])" << endl;
-    cout << "\t DFA - program converts automaton to MINIMIZED DFA and saves it to output file (-o [default=\"" << OUTPUT_FILE << "\"])" << endl;
-    cout << "\t DFA && -w option is set - program checks if input word is accepted or rejected by DFA automaton and writes result to console" << endl;
     cout << endl;
 }
 
-int loadAutomata(afj_4::automaton::Automaton &a, const string in)
+uint loadAutomata(afj_4::grammar::Grammar &grammar, const std::string &in)
 {
     using namespace pugi;
+    using namespace afj_4;
+    using std::string;
+
     xml_document doc;
     if (!doc.load_file(in.c_str())) return 1;
 
     xml_node structure = doc.child("structure");
-    xml_node automaton = structure.child("automaton");
 
-    if (string(structure.child_value("type")) != "fa") return 2;
+    if (string(structure.child_value("type")) != "grammar") return 2;
 
-    for (xml_node st = automaton.child("state"); st; st = st.next_sibling("state"))
+    std::vector<string> lefts, rights;
+
+    for (xml_node rule = structure.child("production"); rule; rule = rule.next_sibling("production"))
     {
-        bool initial = st.child("initial");
-        bool final = st.child("final");
-        int id = st.attribute("id").as_int();
-        string name = st.attribute("name").as_string();
-
-        a.addState(afj_4::types::state(id, name, initial, final));
+        string left = string(rule.child_value("left")).c_str();
+        string right = string(rule.child_value("right")).c_str();
+        lefts.push_back(left);
+        rights.push_back(right);
     }
 
-    for (xml_node trans = automaton.child("transition"); trans; trans = trans.next_sibling("transition"))
+    for (uint i = 0; i < lefts.size(); i++)
     {
-        int from = atoi(string(trans.child_value("from")).c_str());
-        int to = atoi(string(trans.child_value("to")).c_str());
-        string input = trans.child_value("read");
-        bool epsilon = false;
-
-        if (input.empty())
-        {
-            input = EPSILON_STRING;
-            epsilon = true;
-        }
-
-        a.addTransition(afj_4::types::transition(from, to, input, epsilon));
+        std::string str = lefts.at(i);
+        types::Rule rule(types::Nonterminal(str), lefts, rights.at(i));
+        grammar.pushRule(rule);
     }
 
     return 0;
-}
-
-void saveAutomata(afj_4::automaton::Automaton &a, const string out)
-{
-    using namespace pugi;
-
-    xml_document doc;
-
-    auto declarationNode = doc.append_child(node_declaration);
-    declarationNode.append_attribute("version")    = "1.0";
-    declarationNode.append_attribute("encoding")   = "UTF-8";
-    declarationNode.append_attribute("standalone") = "no";
-    auto root = doc.append_child("structure");
-
-    xml_node nodeChild = root.append_child("type");
-    nodeChild.append_child(pugi::node_pcdata).set_value("fa");
-
-    xml_node n_automaton = root.append_child("automaton");
-    for (const auto &st : a.states)
-    {
-        xml_node state = n_automaton.append_child("state");
-        state.append_attribute("id") = st.second.id;
-        state.append_attribute("name") = st.second.name.c_str();
-            xml_node x = state.append_child("x");
-            xml_node y = state.append_child("y");
-            x.append_child(node_pcdata).set_value(to_string(st.second.jpos.x).c_str());
-            y.append_child(node_pcdata).set_value(to_string(st.second.jpos.y).c_str());
-        if (st.second.initial)
-            state.append_child("initial");
-        if (st.second.final)
-            state.append_child("final");
-    }
-
-    for (const auto &tr : a.transitions)
-    {
-        xml_node transition = n_automaton.append_child("transition");
-        xml_node from = transition.append_child("from");
-        xml_node to = transition.append_child("to");
-        xml_node read = transition.append_child("read");
-        from.append_child(node_pcdata).set_value(to_string(tr.from).c_str());
-        to.append_child(node_pcdata).set_value(to_string(tr.to).c_str());
-        read.append_child(node_pcdata).set_value(tr.input.c_str());
-    }
-
-    doc.save_file(out.c_str());
 }

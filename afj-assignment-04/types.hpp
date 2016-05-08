@@ -9,88 +9,189 @@
 #ifndef types_h
 #define types_h
 
-#include <vector>
 #include <string>
-#include "constants.hpp"
+#include <vector>
+
+#define TERMINAL    0
+#define NONTERMINAL 1
 
 namespace afj_4
 {
 namespace types
 {
-    struct position
-    {
-        int x,
-            y;
+    typedef unsigned int uint;
 
-        position()
+    struct Terminal
+    {
+        bool    is_epsilon = true,
+                is_empty = true;
+        std::string value = "";
+
+        Terminal() : value("") {};
+        Terminal(const std::string &value, bool epsilon = false) :
+                value(value),
+                is_epsilon(epsilon),
+                is_empty (false) {}
+
+        bool operator == (const Terminal& terminal) const
         {
-            x = 0;
-            y = 0;
+            return (value == terminal.value && is_epsilon == terminal.is_epsilon && is_empty == terminal.is_empty);
         }
-        position(int x, int y) : x(x), y(y) {}
-        position& operator =(const position& a)
+
+        bool operator != (const Terminal& terminal) const
         {
-            x = a.x;
-            y = a.y;
-            return *this;
+            return !(*this == terminal);
         }
     };
 
-    struct state
+    typedef std::vector<Terminal> Terminals;
+
+    struct Nonterminal
     {
-        int id;
-        bool initial,
-             final;
+        bool is_empty = true;
+        std::string value = "";
 
-        std::string name;
-        position jpos;
+        Nonterminal() : value(""), is_empty(true) {};
+        Nonterminal(const std::string &value) : value(value), is_empty(false) {}
 
-        state() {}
-        state(int id, std::string name, bool initial = false, bool final = false, position jpos = position()) :
-        id(id), name(name), initial(initial), final(final), jpos(jpos) {}
-
-        bool operator < (const state& st) const
+        bool operator < (const Nonterminal& nonterminal) const
         {
-            return (id < st.id);
+            return (value < nonterminal.value);
         }
 
-        bool operator == (const state& st) const
+        bool operator > (const Nonterminal& nonterminal) const
         {
-            return (id == st.id);
+            return !(*this < nonterminal);
         }
 
-        bool operator != (const state& st) const
+        bool operator == (const Nonterminal& nonterminal) const
         {
-            return !(*this == st);
+            return (value == nonterminal.value && is_empty == nonterminal.is_empty);
+        }
+
+        bool operator != (const Nonterminal& nonterminal) const
+        {
+            return !(*this == nonterminal);
         }
     };
 
-    struct transition
+    typedef std::vector<Nonterminal> Nonterminals;
+
+    struct Unional
     {
-        int from,
-        to;
-        bool epsilon;
+        Terminal    terminal;
+        Nonterminal nonterminal;
+        int type = -1;
 
-        std::string input;
-
-        transition(int from, int to, std::string input, bool epsilon = false) : from(from), to(to), input(input), epsilon(epsilon) {}
-
-        bool operator < (const transition& t) const
+        Unional()
         {
-            return (from < t.from);
-        }
+            terminal = Terminal();
+            nonterminal = Nonterminal();
+        };
+        Unional(const Terminal &terminal) : terminal(terminal)
+        {
+            type = TERMINAL;
+        };
+        Unional(const Nonterminal &nonterminal) : nonterminal(nonterminal)
+        {
+            type = NONTERMINAL;
+        };
+
+        void setTerminal(const Terminal &_terminal)
+        {
+            terminal = _terminal;
+            nonterminal = Nonterminal();
+            type = TERMINAL;
+        };
+        void setNonterminal(const Nonterminal &_nonterminal)
+        {
+            terminal = Terminal();
+            nonterminal = _nonterminal;
+            type = NONTERMINAL;
+        };
+    private:
+        //Unional();
+        //Unional& operator=(const Unional&);
+        //Unional(const Unional&);
+    };
+
+    typedef std::vector<Unional> Unionals;
+
+    struct Right
+    {
+        std::string representation = "";
+        Unionals unionals;
+
+        void pushUnional(const Unional &unional)
+        {
+            if (unional.type == TERMINAL)
+                pushTerminal(unional.terminal);
+            else
+                pushNonterminal(unional.nonterminal);
+        };
+
+        void pushTerminal(const Terminal &terminal)
+        {
+            representation += terminal.value;
+            Unional unional(terminal);
+            unionals.push_back(unional);
+        };
+
+        void pushNonterminal(const Nonterminal &nonterminal)
+        {
+            representation += nonterminal.value;
+            Unional unional(nonterminal);
+            unionals.push_back(unional);
+        };
+
+    };
+
+    struct Rule
+    {
+        Nonterminal left;
+        Right right;
         
-        bool operator == (const transition& t) const
+        Rule(const Nonterminal &nonterminal) : left(nonterminal) {}
+        Rule(const Nonterminal &nonterminal, const Right &right) :
+                left(nonterminal),
+                right(right) {}
+        Rule(const Nonterminal &nonterminal, const std::vector<std::string> &lefts, const std::string &_right)
         {
-            return (from == t.from && to == t.to && epsilon == t.epsilon && input == t.input);
+            left = nonterminal;
+
+            for(uint i = 0; i < _right.length(); i++)
+            {
+                std::string str("");
+                str += _right.at(i);
+                Unional u;
+
+                if (std::find(lefts.begin(), lefts.end(), str) != lefts.end())
+                    u.setNonterminal(Nonterminal(str));
+                else
+                    u.setTerminal(Terminal(str));
+
+                pushUnional(Unional(u));
+            }
         }
-        
-        bool operator != (const transition& t) const
+
+        void setLeft(const Nonterminal &nonterminal)
         {
-            return !(*this == t);
+            left = nonterminal;
+        }
+
+        void setRight(const Right &_right)
+        {
+            right = _right;
+        }
+
+        void pushUnional(const Unional &unional)
+        {
+            right.pushUnional(unional);
         }
     };
-    typedef std::vector<state> vstate;
+
+    typedef std::vector<Rule> Rules;
+
 }
 }
 #endif /* types_h */
