@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
 
         if (load == 2)
         {
-            cout << "Automaton \"" << input_file << "\" is not \"grammar\" type." << endl;
+            cout << "File \"" << input_file << "\" is not \"grammar\" type. \nCreate new grammar in jFlap save it as *.jff and use that file." << endl;
             return 2;
         }
     }
@@ -116,6 +116,10 @@ uint loadAutomata(afj_4::grammar::Grammar &grammar, const std::string &in)
     {
         string left = string(rule.child_value("left")).c_str();
         string right = string(rule.child_value("right")).c_str();
+
+        grammar.addNonterminal(left);
+        grammar.addTerminal(right);
+
         lefts.push_back(left);
         rights.push_back(right);
     }

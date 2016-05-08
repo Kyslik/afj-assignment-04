@@ -6,17 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "afj-assignment-04/main.cpp"
-            timestampString = "484423599.447133"
+            filePath = "afj-assignment-04/types.hpp"
+            timestampString = "484431337.154789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "loadAutomata(afj_4::grammar::Grammar &amp;grammar, const std::string &amp;in)"
-            landmarkType = "7">
+            startingLineNumber = "176"
+            endingLineNumber = "176">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,12 +24,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-04/main.cpp"
-            timestampString = "484425475.942694"
+            timestampString = "484428667.127722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "loadAutomata(afj_4::grammar::Grammar &amp;grammar, const std::string &amp;in)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "main (int argc, char *argv[])"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,26 +39,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "afj-assignment-04/types.hpp"
-            timestampString = "484426343.25459"
+            filePath = "afj-assignment-04/main.cpp"
+            timestampString = "484431013.089377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "afj-assignment-04/types.hpp"
-            timestampString = "484426343.25459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171">
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "loadAutomata(afj_4::grammar::Grammar &amp;grammar, const std::string &amp;in)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

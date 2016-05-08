@@ -17,6 +17,9 @@
 
 namespace afj_4
 {
+
+    const std::string EPSILON = "0";
+
 namespace types
 {
     typedef unsigned int uint;
@@ -158,6 +161,8 @@ namespace types
         Rule(const Nonterminal &nonterminal, const std::vector<std::string> &lefts, const std::string &_right)
         {
             left = nonterminal;
+            if (_right.size() == 0)
+                pushUnional(Unional(Terminal("", true)));
 
             for(uint i = 0; i < _right.length(); i++)
             {
