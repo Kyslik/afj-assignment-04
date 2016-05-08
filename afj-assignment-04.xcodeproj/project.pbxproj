@@ -43,7 +43,7 @@
 		50CBDF8B1CA4975100838044 /* automaton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = automaton.hpp; path = "afj-assignment-2/lib/automaton.hpp"; sourceTree = "<group>"; };
 		50CBDF8D1CA577A500838044 /* jflap-automat-3.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-automat-3.jff"; path = "afj-assignment-2/data/jflap-automat-3.jff"; sourceTree = "<group>"; };
 		50CBDF8E1CA59A9B00838044 /* jflap-automat-4.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-automat-4.jff"; path = "afj-assignment-2/data/jflap-automat-4.jff"; sourceTree = "<group>"; };
-		50D32A551C93159800C5626A /* afj-assignment-2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "afj-assignment-2"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50D32A551C93159800C5626A /* afj-assignment-04 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "afj-assignment-04"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D32A581C93159800C5626A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +82,7 @@
 		50D32A4C1C93159800C5626A = {
 			isa = PBXGroup;
 			children = (
-				50D32A571C93159800C5626A /* afj-assignment-2 */,
+				50D32A571C93159800C5626A /* afj-assignment-4 */,
 				50CBDF7F1CA43B8D00838044 /* lib */,
 				50CBDF811CA43C1400838044 /* data */,
 				50D32A561C93159800C5626A /* Products */,
@@ -92,27 +92,28 @@
 		50D32A561C93159800C5626A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				50D32A551C93159800C5626A /* afj-assignment-2 */,
+				50D32A551C93159800C5626A /* afj-assignment-04 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		50D32A571C93159800C5626A /* afj-assignment-2 */ = {
+		50D32A571C93159800C5626A /* afj-assignment-4 */ = {
 			isa = PBXGroup;
 			children = (
 				50D32A581C93159800C5626A /* main.cpp */,
 				50CBDF861CA47F1D00838044 /* constants.hpp */,
 				50CBDF891CA480A000838044 /* types.hpp */,
 			);
+			name = "afj-assignment-4";
 			path = "afj-assignment-2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		50D32A541C93159800C5626A /* afj-assignment-2 */ = {
+		50D32A541C93159800C5626A /* afj-assignment-04 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50D32A5C1C93159800C5626A /* Build configuration list for PBXNativeTarget "afj-assignment-2" */;
+			buildConfigurationList = 50D32A5C1C93159800C5626A /* Build configuration list for PBXNativeTarget "afj-assignment-04" */;
 			buildPhases = (
 				50D32A511C93159800C5626A /* Sources */,
 				50D32A521C93159800C5626A /* Frameworks */,
@@ -122,9 +123,9 @@
 			);
 			dependencies = (
 			);
-			name = "afj-assignment-2";
+			name = "afj-assignment-04";
 			productName = "afj-assignment-2";
-			productReference = 50D32A551C93159800C5626A /* afj-assignment-2 */;
+			productReference = 50D32A551C93159800C5626A /* afj-assignment-04 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -141,7 +142,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 50D32A501C93159800C5626A /* Build configuration list for PBXProject "afj-assignment-2" */;
+			buildConfigurationList = 50D32A501C93159800C5626A /* Build configuration list for PBXProject "afj-assignment-04" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -153,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				50D32A541C93159800C5626A /* afj-assignment-2 */,
+				50D32A541C93159800C5626A /* afj-assignment-04 */,
 			);
 		};
 /* End PBXProject section */
@@ -257,7 +258,7 @@
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "-lpugixml";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "afj-assignment-04";
 			};
 			name = Debug;
 		};
@@ -268,14 +269,14 @@
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "-lpugixml";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "afj-assignment-04";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		50D32A501C93159800C5626A /* Build configuration list for PBXProject "afj-assignment-2" */ = {
+		50D32A501C93159800C5626A /* Build configuration list for PBXProject "afj-assignment-04" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50D32A5A1C93159800C5626A /* Debug */,
@@ -284,7 +285,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50D32A5C1C93159800C5626A /* Build configuration list for PBXNativeTarget "afj-assignment-2" */ = {
+		50D32A5C1C93159800C5626A /* Build configuration list for PBXNativeTarget "afj-assignment-04" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50D32A5D1C93159800C5626A /* Debug */,
