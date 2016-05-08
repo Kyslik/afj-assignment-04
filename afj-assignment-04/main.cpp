@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <pugixml.hpp>
+
 #include "lib/automaton.hpp"
 
 
@@ -172,7 +173,6 @@ void saveAutomata(afj_4::automaton::Automaton &a, const string out)
 {
     using namespace pugi;
 
-    a.calculateXandY();
     xml_document doc;
 
     auto declarationNode = doc.append_child(node_declaration);
@@ -210,6 +210,6 @@ void saveAutomata(afj_4::automaton::Automaton &a, const string out)
         to.append_child(node_pcdata).set_value(to_string(tr.to).c_str());
         read.append_child(node_pcdata).set_value(tr.input.c_str());
     }
-    
+
     doc.save_file(out.c_str());
 }

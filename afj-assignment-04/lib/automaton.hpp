@@ -74,7 +74,6 @@ namespace automaton
         void    nfa2dfa();
         void    removeUnreachableStates();
         void    minimize();
-        void    calculateXandY();
 
     private:
         types::vstate   eClosure(types::state s);
