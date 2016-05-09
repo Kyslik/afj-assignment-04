@@ -49,9 +49,8 @@ namespace grammar
     {
         for (const auto &terminal : _terminals)
         {
-            bool epsilon = false;
-            if (terminal == EPSILON) epsilon = true;
-            _firsts[terminal] = types::TerminalSet({types::Terminal(terminal, epsilon)});
+            if (terminal == EPSILON) continue;
+            _firsts[terminal] = types::TerminalSet({types::Terminal(terminal, false)});
         }
 
         for (const auto &rule : _rules)
