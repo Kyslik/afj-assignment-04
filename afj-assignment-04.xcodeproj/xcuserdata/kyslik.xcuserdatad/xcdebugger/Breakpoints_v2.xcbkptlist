@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-04/types.hpp"
-            timestampString = "484440708.868631"
+            timestampString = "484496378.516469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189">
+            startingLineNumber = "194"
+            endingLineNumber = "194">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -40,59 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-04/lib/grammar.cpp"
-            timestampString = "484489909.371996"
+            timestampString = "484497615.078947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "Grammar::computeFirst()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "afj_4::grammar::Grammar::computeFirst()"
-                  moduleName = "afj-assignment-04"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/assignment-4/afj-assignment-04/lib/grammar.cpp"
-                  timestampString = "484486496.020723"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "67">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "afj_4::grammar::Grammar::computeFirst()"
-                  moduleName = "afj-assignment-04"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/assignment-4/afj-assignment-04/lib/grammar.cpp"
-                  timestampString = "484486496.020862"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "671">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "afj-assignment-04/lib/grammar.cpp"
-            timestampString = "484489909.371996"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "Grammar::computeFollow()"
             landmarkType = "5">
          </BreakpointContent>

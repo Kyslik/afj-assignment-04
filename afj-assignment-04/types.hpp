@@ -113,6 +113,12 @@ namespace types
             type = NONTERMINAL;
         };
 
+        const std::string getValue() const
+        {
+            if(type == TERMINAL) return terminal.value;
+            return nonterminal.value;
+        }
+
         void setTerminal(const Terminal &_terminal)
         {
             terminal = _terminal;
@@ -159,7 +165,6 @@ namespace types
             Unional unional(nonterminal);
             unionals.push_back(unional);
         };
-
     };
 
     struct Rule

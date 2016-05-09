@@ -131,6 +131,42 @@ namespace grammar
     void Grammar::computeFollow()
     {
         insertInFollow(_follows[_rules[0].left.value], types::Terminal(EPSILON, true), _rules[0].left.value);
+        while(true)
+        {
+            bool changed = false;
+            for (const auto &rule : _rules)
+            {
+                auto &terminal_set = _follows[rule.left.value];
+
+                for (uint i = 0; i < rule.right.unionals.size(); i++)
+                {
+                    auto unional = rule.right.unionals[i];
+                    if (unional.type == TERMINAL) continue;
+
+                    std::string nonterminal = unional.nonterminal.value;
+                    size_t nonterminal_set_size = _follows[nonterminal].size();
+
+                    if (i + 1 < rule.right.unionals.size())
+                    {
+                        std::string next_unional_value = rule.right.unionals[i + 1].getValue();
+
+                        for (const auto &first : _firsts[next_unional_value])
+                            if (!first.is_epsilon)
+                                insertInFollow(_follows[nonterminal], first, nonterminal);
+
+                        if (_firsts[next_unional_value].find(types::Terminal(EPSILON, true)) == _firsts[nonterminal].end())
+                            for (const auto &terminal : terminal_set)
+                                insertInFollow(_follows[nonterminal], terminal, nonterminal);
+                    }
+                    else
+                        for (const auto &terminal : terminal_set)
+                            insertInFollow(_follows[nonterminal], terminal, nonterminal);
+                    if (!changed &&
+                        (nonterminal_set_size != _follows[nonterminal].size())) changed = true;
+                }
+            }
+            if (!changed) break;
+        }
     }
 
     void Grammar::insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)

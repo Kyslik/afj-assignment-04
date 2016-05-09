@@ -3,7 +3,7 @@
 	<!--The list of productions.-->
 	<production>
 		<left>S</left>
-		<right>C$</right>
+		<right>Cx</right>
 	</production>
 	<production>
 		<left>A</left>
