@@ -19,7 +19,8 @@ namespace grammar
         if (terminal.length() == 1 && _nonterminals.find(terminal) == _nonterminals.end())
             _terminals.insert(terminal);
 
-        if (terminal.empty()) _terminals.insert(EPSILON);
+        if (terminal.empty())
+            _terminals.insert(EPSILON);
 
         if (terminal.length() != 1)
         {
@@ -39,7 +40,7 @@ namespace grammar
         {
             std::cout << first.first << ": ";
             for (const auto &item : first.second)
-                std::cout << item.value << ", ";
+                std::cout << item.value << " ";
             std::cout << std::endl << std::endl;
         }
     }
@@ -62,8 +63,7 @@ namespace grammar
                 rule.right.unionals[0].type == NONTERMINAL) continue;
 
             auto &terminal_set = _firsts[rule.left.value];
-
-            terminal_set.insert(rule.right.unionals[0].terminal);
+            insertInFirst(terminal_set, rule.right.unionals[0].terminal, rule.left.value);
         }
 
         while (true)
@@ -73,58 +73,56 @@ namespace grammar
             {
                 if (rule.right.unionals.size() == 0 ||
                     rule.right.unionals[0].type == TERMINAL) continue;
+
                 std::cout << "rule: " << rule.left.value << " -> " << rule.right.representation << std::endl;
 
                 auto &terminal_set = _firsts[rule.left.value];
                 size_t terminal_set_size = terminal_set.size();
+
                 {
                     auto unional = rule.right.unionals[0];
                     if (unional.type == TERMINAL && !unional.terminal.is_epsilon)
-                    {
-                        terminal_set.insert(unional.terminal);
-                    }
+                        insertInFirst(terminal_set, unional.terminal, rule.left.value);
 
                     if (unional.type == NONTERMINAL)
-                    {
                         for (const auto &first : _firsts[unional.nonterminal.value])
                             if (!first.is_epsilon)
-                                terminal_set.insert(first);
-                    }
+                                insertInFirst(terminal_set, first, rule.left.value);
                 }
+
                 uint i = 0;
                 while(i < rule.right.unionals.size() - 1 &&
+                      rule.right.unionals[i].type == NONTERMINAL &&
                       _firsts[rule.right.unionals[i].nonterminal.value].find(types::Terminal(EPSILON, true)) != _firsts[rule.right.unionals[i].nonterminal.value].end())
                 {
                     {
                         auto unional = rule.right.unionals[i+1];
                         if (unional.type == TERMINAL && !unional.terminal.is_epsilon)
-                        {
-                            terminal_set.insert(unional.terminal);
-                        }
+                            insertInFirst(terminal_set, unional.terminal, rule.left.value);
 
                         if (unional.type == NONTERMINAL)
-                        {
                             for (const auto &first : _firsts[unional.nonterminal.value])
                                 if (!first.is_epsilon)
-                                {
-                                    std::cout << "inserting in FIRST(" << rule.left.value << "): " << first.value << std::endl;
-                                    terminal_set.insert(first);
-                                }
-                        }
+                                    insertInFirst(terminal_set, first, rule.left.value);
                     }
-                    
                     i++;
                 }
 
                 if(i == rule.right.unionals.size() &&
                    _firsts[rule.right.unionals[i].nonterminal.value].find(EPSILON) != _firsts[rule.right.unionals[i].nonterminal.value].end())
-                    terminal_set.insert(types::Terminal(EPSILON, true));
+                    insertInFirst(terminal_set, types::Terminal(EPSILON, true), rule.left.value);
 
                 if (!changed && terminal_set_size != terminal_set.size()) changed = true;
             }
-
             if (!changed) break;
         }
+    }
+
+    void Grammar::insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    {
+        if (terminal_set.find(terminal) != terminal_set.end()) return;
+        terminal_set.insert(terminal);
+        std::cout << "inserting in FIRST(" << in << "): " << terminal.value << std::endl;
     }
 }
 }

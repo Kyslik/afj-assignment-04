@@ -29,7 +29,7 @@ namespace afj_4
 
             StringSet _terminals, _nonterminals;
 
-            void computeFirst(const types::Rule &rule);
+            void insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
         public:
             Grammar();
             Grammar(const types::Rules &rules) : _rules(rules) {};

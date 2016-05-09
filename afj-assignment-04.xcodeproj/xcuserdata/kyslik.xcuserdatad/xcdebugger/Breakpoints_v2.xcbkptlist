@@ -40,11 +40,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-04/lib/grammar.cpp"
-            timestampString = "484479296.354939"
+            timestampString = "484488390.021786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "Grammar::computeFirst()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "afj_4::grammar::Grammar::computeFirst()"
+                  moduleName = "afj-assignment-04"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/assignment-4/afj-assignment-04/lib/grammar.cpp"
+                  timestampString = "484486496.020723"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "67">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "afj_4::grammar::Grammar::computeFirst()"
+                  moduleName = "afj-assignment-04"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kyslik/Documents/School/2015-2016/SS/AFJ/assignment-4/afj-assignment-04/lib/grammar.cpp"
+                  timestampString = "484486496.020862"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "671">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "afj-assignment-04/lib/grammar.cpp"
+            timestampString = "484488390.021786"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "Grammar::computeFirst()"
             landmarkType = "5">
          </BreakpointContent>
@@ -56,27 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "afj-assignment-04/lib/grammar.cpp"
-            timestampString = "484484078.312537"
+            timestampString = "484488390.021786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "Grammar::computeFirst()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "afj-assignment-04/lib/grammar.cpp"
-            timestampString = "484484474.028277"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "Grammar::computeFirst()"
             landmarkType = "5">
          </BreakpointContent>

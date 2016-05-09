@@ -31,7 +31,7 @@ namespace types
                 is_empty = true;
         std::string value = "";
 
-        Terminal() : value("") {};
+        Terminal() : value(EPSILON), is_epsilon(true), is_empty(false) {};
         Terminal(const std::string &value, bool epsilon = false) :
                 value(value),
                 is_epsilon(epsilon),
