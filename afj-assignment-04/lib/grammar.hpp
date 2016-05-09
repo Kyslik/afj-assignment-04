@@ -25,11 +25,17 @@ namespace afj_4
         class Grammar
         {
             types::Rules _rules;
-            types::StringToTerminalSetMap _firsts;
+            types::StringToTerminalSetMap   _firsts,
+                                            _follows;
 
-            StringSet _terminals, _nonterminals;
+            StringSet   _terminals,
+                        _nonterminals;
 
+            void insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
             void insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
+            void insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
+            
+            void displayTerminalSet(const types::StringToTerminalSetMap &terminal_set_map);
         public:
             Grammar();
             Grammar(const types::Rules &rules) : _rules(rules) {};
@@ -49,6 +55,8 @@ namespace afj_4
             void addTerminal(const std::string &terminal);
             void computeFirst();
             void displayFirst();
+            void displayFollow();
+            void computeFollow();
         };
     }
 }

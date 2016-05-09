@@ -36,13 +36,13 @@ namespace grammar
 
     void Grammar::displayFirst()
     {
-        for (const auto &first : _firsts)
-        {
-            std::cout << first.first << ": ";
-            for (const auto &item : first.second)
-                std::cout << item.value << " ";
-            std::cout << std::endl << std::endl;
-        }
+        displayTerminalSet(_firsts);
+    }
+
+    void Grammar::insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    {
+        insertInTerminalSet(terminal_set, terminal, in);
+        std::cout << "inserting in FIRST(" << in << "): " << terminal.value << std::endl;
     }
 
     void Grammar::computeFirst()
@@ -117,11 +117,37 @@ namespace grammar
         }
     }
 
-    void Grammar::insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    void Grammar::displayFollow()
     {
-        if (terminal_set.find(terminal) != terminal_set.end()) return;
-        terminal_set.insert(terminal);
-        std::cout << "inserting in FIRST(" << in << "): " << terminal.value << std::endl;
+        displayTerminalSet(_follows);
+    }
+
+    void Grammar::insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    {
+        insertInTerminalSet(terminal_set, terminal, in);
+        std::cout << "inserting in FOLLOW(" << in << "): " << terminal.value << std::endl;
+    }
+
+    void Grammar::computeFollow()
+    {
+        insertInFollow(_follows[_rules[0].left.value], types::Terminal(EPSILON, true), _rules[0].left.value);
+    }
+
+    void Grammar::insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    {
+        if (terminal_set.find(terminal) == terminal_set.end())
+            terminal_set.insert(terminal);
+    }
+
+    void Grammar::displayTerminalSet(const types::StringToTerminalSetMap &terminal_set_map)
+    {
+        for (const auto &set : terminal_set_map)
+        {
+            std::cout << set.first << ": ";
+            for (const auto &item : set.second)
+                std::cout << item.value << " ";
+            std::cout << std::endl << std::endl;
+        }
     }
 }
 }

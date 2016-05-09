@@ -81,6 +81,9 @@ int main (int argc, char *argv[])
 
     grammar.computeFirst();
     grammar.displayFirst();
+
+    grammar.computeFollow();
+    grammar.displayFollow();
     return 0;
 }
 
