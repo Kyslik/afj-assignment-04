@@ -39,10 +39,12 @@ namespace grammar
         displayTerminalSet(_firsts);
     }
 
-    void Grammar::insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    bool Grammar::insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
     {
-        insertInTerminalSet(terminal_set, terminal, in);
+        if(!insertInTerminalSet(terminal_set, terminal, in)) return false;
+
         std::cout << "inserting in FIRST(" << in << "): " << terminal.value << std::endl;
+        return true;
     }
 
     void Grammar::computeFirst()
@@ -122,10 +124,12 @@ namespace grammar
         displayTerminalSet(_follows);
     }
 
-    void Grammar::insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    bool Grammar::insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
     {
-        insertInTerminalSet(terminal_set, terminal, in);
+        if (!insertInTerminalSet(terminal_set, terminal, in)) return false;
+
         std::cout << "inserting in FOLLOW(" << in << "): " << terminal.value << std::endl;
+        return true;
     }
 
     void Grammar::computeFollow()
@@ -169,10 +173,11 @@ namespace grammar
         }
     }
 
-    void Grammar::insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
+    bool Grammar::insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in)
     {
-        if (terminal_set.find(terminal) == terminal_set.end())
-            terminal_set.insert(terminal);
+        if (terminal_set.find(terminal) != terminal_set.end()) return false;
+        terminal_set.insert(terminal);
+        return true;
     }
 
     void Grammar::displayTerminalSet(const types::StringToTerminalSetMap &terminal_set_map)

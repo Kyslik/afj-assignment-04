@@ -31,9 +31,9 @@ namespace afj_4
             StringSet   _terminals,
                         _nonterminals;
 
-            void insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
-            void insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
-            void insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
+            bool insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
+            bool insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
+            bool insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
             
             void displayTerminalSet(const types::StringToTerminalSetMap &terminal_set_map);
         public:
