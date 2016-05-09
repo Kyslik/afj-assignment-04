@@ -73,100 +73,58 @@ namespace grammar
             {
                 if (rule.right.unionals.size() == 0 ||
                     rule.right.unionals[0].type == TERMINAL) continue;
+                std::cout << "rule: " << rule.left.value << " -> " << rule.right.representation << std::endl;
 
                 auto &terminal_set = _firsts[rule.left.value];
                 size_t terminal_set_size = terminal_set.size();
-
-                bool has_predecessor_epsilon = false;
-                bool terminated_by_terminal = false;
-
-                for (const auto &unional : rule.right.unionals)
                 {
+                    auto unional = rule.right.unionals[0];
                     if (unional.type == TERMINAL && !unional.terminal.is_epsilon)
                     {
                         terminal_set.insert(unional.terminal);
-                        terminated_by_terminal = true;
-                        break;
                     }
 
-                    for (const auto &set : _firsts[unional.nonterminal.value])
+                    if (unional.type == NONTERMINAL)
                     {
-                        if (!set.is_epsilon)
-                        {
-                            terminal_set.insert(set);
-                        }
-                        else
-                            has_predecessor_epsilon = true;
+                        for (const auto &first : _firsts[unional.nonterminal.value])
+                            if (!first.is_epsilon)
+                                terminal_set.insert(first);
                     }
                 }
+                uint i = 0;
+                while(i < rule.right.unionals.size() - 1 &&
+                      _firsts[rule.right.unionals[i].nonterminal.value].find(types::Terminal(EPSILON, true)) != _firsts[rule.right.unionals[i].nonterminal.value].end())
+                {
+                    {
+                        auto unional = rule.right.unionals[i+1];
+                        if (unional.type == TERMINAL && !unional.terminal.is_epsilon)
+                        {
+                            terminal_set.insert(unional.terminal);
+                        }
 
-                if (has_predecessor_epsilon && !terminated_by_terminal)
+                        if (unional.type == NONTERMINAL)
+                        {
+                            for (const auto &first : _firsts[unional.nonterminal.value])
+                                if (!first.is_epsilon)
+                                {
+                                    std::cout << "inserting in FIRST(" << rule.left.value << "): " << first.value << std::endl;
+                                    terminal_set.insert(first);
+                                }
+                        }
+                    }
+                    
+                    i++;
+                }
+
+                if(i == rule.right.unionals.size() &&
+                   _firsts[rule.right.unionals[i].nonterminal.value].find(EPSILON) != _firsts[rule.right.unionals[i].nonterminal.value].end())
                     terminal_set.insert(types::Terminal(EPSILON, true));
 
-                if (terminal_set_size != terminal_set.size()) changed = true;
+                if (!changed && terminal_set_size != terminal_set.size()) changed = true;
             }
 
             if (!changed) break;
         }
     }
-
-//    void Grammar::computeFirst(const types::Rule &rule)
-//    {
-//        if (rule.right.unionals.size() == 0) return;
-//
-//        if (_firsts.find(rule.left.value) == _firsts.end())
-//            _firsts[rule.left.value] = types::TerminalSet();
-//
-//        auto &terminal_set = _firsts[rule.left.value];
-//
-//        if (rule.right.unionals[0].type == TERMINAL)
-//        {
-//            terminal_set.insert(rule.right.unionals[0].terminal);
-//            return;
-//        }
-//        else
-//        {
-//            for (const auto &unional : rule.right.unionals)
-//            {
-//                if (unional.type == TERMINAL) continue;
-//                for (const auto &r : _rules)
-//                {
-//                    if (r.left == unional.nonterminal)
-//                    {
-//                        computeFirst(r);
-//                    }
-//                }
-//            }
-//
-//            bool has_predecessor_epsilon = false;
-//
-//            for (const auto &unional : rule.right.unionals)
-//            {
-//                if (unional.type == TERMINAL && !unional.terminal.is_epsilon)
-//                {
-//                    terminal_set.insert(unional.terminal);
-//                    return;
-//                }
-//
-//                for (const auto &set : _firsts[unional.nonterminal.value])
-//                {
-//                    if (!set.is_epsilon)
-//                        terminal_set.insert(set);
-//                    else
-//                        has_predecessor_epsilon = true;
-//                }
-//            }
-//
-//            if (has_predecessor_epsilon) terminal_set.insert(types::Terminal("", true));
-//        }
-//    };
-//
-//    void Grammar::computeFirst()
-//    {
-//        for (const auto &rule : _rules)
-//        {
-//            computeFirst(rule);
-//        }
-//    }
 }
 }

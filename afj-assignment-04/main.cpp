@@ -13,7 +13,7 @@
 
 #include "lib/grammar.hpp"
 
-const std::string INPUT_FILE = "./jflap-grammar.jff";
+const std::string INPUT_FILE = "./jflap-grammar2.jff";
 const std::string OUTPUT_FILE = "./out.txt";
 
 void showHelp(char *s);

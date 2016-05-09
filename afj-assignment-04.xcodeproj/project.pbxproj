@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		504ED1C01CDF63C5003C7E30 /* grammar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504ED1BE1CDF63C5003C7E30 /* grammar.cpp */; };
 		504ED1C21CDFABCF003C7E30 /* jflap-grammar.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 504ED1C11CDFABC4003C7E30 /* jflap-grammar.jff */; };
+		5080B2541CE080BE00CBFECD /* jflap-grammar2.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5080B2531CE080B400CBFECD /* jflap-grammar2.jff */; };
+		5080B2561CE08A9A00CBFECD /* jflap-grammar3.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5080B2551CE08A8D00CBFECD /* jflap-grammar3.jff */; };
 		50D32A591C93159800C5626A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D32A581C93159800C5626A /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +21,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				5080B2561CE08A9A00CBFECD /* jflap-grammar3.jff in CopyFiles */,
+				5080B2541CE080BE00CBFECD /* jflap-grammar2.jff in CopyFiles */,
 				504ED1C21CDFABCF003C7E30 /* jflap-grammar.jff in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -29,6 +33,8 @@
 		504ED1BE1CDF63C5003C7E30 /* grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grammar.cpp; sourceTree = "<group>"; };
 		504ED1BF1CDF63C5003C7E30 /* grammar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grammar.hpp; sourceTree = "<group>"; };
 		504ED1C11CDFABC4003C7E30 /* jflap-grammar.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-grammar.jff"; path = "afj-assignment-04/data/jflap-grammar.jff"; sourceTree = "<group>"; };
+		5080B2531CE080B400CBFECD /* jflap-grammar2.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-grammar2.jff"; path = "afj-assignment-04/data/jflap-grammar2.jff"; sourceTree = "<group>"; };
+		5080B2551CE08A8D00CBFECD /* jflap-grammar3.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-grammar3.jff"; path = "afj-assignment-04/data/jflap-grammar3.jff"; sourceTree = "<group>"; };
 		50CBDF891CA480A000838044 /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
 		50D32A551C93159800C5626A /* afj-assignment-04 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "afj-assignment-04"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D32A581C93159800C5626A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -58,6 +64,8 @@
 		50CBDF811CA43C1400838044 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				5080B2551CE08A8D00CBFECD /* jflap-grammar3.jff */,
+				5080B2531CE080B400CBFECD /* jflap-grammar2.jff */,
 				504ED1C11CDFABC4003C7E30 /* jflap-grammar.jff */,
 			);
 			name = data;

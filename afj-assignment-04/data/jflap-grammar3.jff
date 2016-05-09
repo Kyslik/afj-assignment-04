@@ -3,50 +3,30 @@
 	<!--The list of productions.-->
 	<production>
 		<left>S</left>
-		<right>ABc</right>
-	</production>
-	<production>
-		<left>A</left>
-		<right>a</right>
+		<right>C$</right>
 	</production>
 	<production>
 		<left>A</left>
 		<right/>
 	</production>
 	<production>
-		<left>B</left>
+		<left>A</left>
 		<right>b</right>
 	</production>
 	<production>
 		<left>B</left>
-		<right/>
+		<right>+S</right>
 	</production>
 	<production>
 		<left>B</left>
-		<right>AB</right>
-	</production>
-	<production>
-		<left>D</left>
-		<right>S</right>
-	</production>
-	<production>
-		<left>D</left>
-		<right>abB</right>
-	</production>
-	<production>
-		<left>B</left>
-		<right>D</right>
-	</production>
-	<production>
-		<left>A</left>
-		<right>Ded</right>
-	</production>
-	<production>
-		<left>D</left>
 		<right/>
 	</production>
 	<production>
-		<left>D</left>
-		<right>fx</right>
+		<left>C</left>
+		<right>A(C)</right>
+	</production>
+	<production>
+		<left>C</left>
+		<right>aB</right>
 	</production>
 </structure>
