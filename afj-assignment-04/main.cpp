@@ -14,7 +14,7 @@
 #include "lib/grammar.hpp"
 
 const std::string INPUT_FILE = "./jflap-grammar2.jff";
-const std::string OUTPUT_FILE = "./out.txt";
+const std::string OUTPUT_FILE = "./out.ctf";
 
 void showHelp(char *s);
 uint loadAutomata(afj_4::grammar::Grammar &grammar, const std::string &in);
@@ -34,7 +34,7 @@ int main (int argc, char *argv[])
     char get_opt;
     string input_file, output_file, word;
 
-    while((get_opt = getopt(argc, argv, "hi:o:w:")) != -1)
+    while((get_opt = getopt(argc, argv, "hi:o:")) != -1) //"hi:o:w:"
     {
         switch(get_opt)
         {
@@ -49,9 +49,9 @@ int main (int argc, char *argv[])
             case 'o':
                 output_file = strdup(optarg);
                 break;
-            case 'w':
-                word = strdup(optarg);
-                break;
+//            case 'w':
+//                word = strdup(optarg);
+//                break;
             default:
                 showHelp(argv[0]);
                 break;
@@ -62,6 +62,7 @@ int main (int argc, char *argv[])
     afj_4::grammar::Grammar grammar(rules);
 
     if (input_file.empty()) input_file = INPUT_FILE;
+    if (output_file.empty()) output_file = OUTPUT_FILE;
 
     {
         int load = loadAutomata(grammar, input_file);
@@ -84,6 +85,9 @@ int main (int argc, char *argv[])
 
     grammar.computeFollow();
     grammar.displayFollow();
+
+    grammar.writeToFile(output_file);
+
     return 0;
 }
 
@@ -96,7 +100,8 @@ void showHelp(char *s)
     cout << "option:  " << "-h  show help" << endl;
     cout << "         " << "-i  [FILE] input file (xml format) / default \"" << INPUT_FILE << "\"" << endl;
     cout << "         " << "-o  [FILE] output file (xml format) / default \"" << OUTPUT_FILE << "\"" << endl;
-    cout << "         " << "-w  [WORD] input word (epsilon character is SPACE)" << endl;
+    cout << "         " << "-v  verbose output (more output while generating FIRST and FOLLOW)" << endl;
+    //cout << "         " << "-w  [WORD] input word (epsilon character is SPACE)" << endl;
     cout << "         " << "WARNING: output file is always REWRITTEN" << endl;
     cout << endl;
     cout << endl;

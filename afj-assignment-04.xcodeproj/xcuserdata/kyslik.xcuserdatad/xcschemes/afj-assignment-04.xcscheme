@@ -63,6 +63,10 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "-o ./test.ctf"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-i ./jflap-grammar3.jff"
             isEnabled = "YES">
          </CommandLineArgument>

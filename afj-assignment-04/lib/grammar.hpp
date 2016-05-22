@@ -55,8 +55,10 @@ namespace afj_4
             void addTerminal(const std::string &terminal);
             void computeFirst();
             void displayFirst();
-            void displayFollow();
             void computeFollow();
+            void displayFollow();
+
+            void writeToFile(const std::string &output);
         };
     }
 }

@@ -7,7 +7,8 @@
 //
 
 #include <iostream>
-
+#include <fstream>
+#include <sstream>
 #include "grammar.hpp"
 
 namespace afj_4
@@ -189,6 +190,40 @@ namespace grammar
                 std::cout << item.value << " ";
             std::cout << std::endl << std::endl;
         }
+    }
+
+    void Grammar::writeToFile(const std::string &output)
+    {
+        std::cout << "Writing to file \"" << output << "\"..." << std::endl;
+
+        std::ofstream out_file;
+        out_file.open(output);
+
+        out_file << "FIRST:" << std::endl;
+        for (const auto &set : _firsts)
+        {
+            std::string firsts;
+            firsts +=  set.first + ": ";
+            for (const auto &item : set.second)
+                firsts += item.value + ", ";
+            firsts.erase(firsts.end() - 2, firsts.end());
+            out_file << firsts << std::endl;
+        }
+
+        out_file << std::endl;
+
+        out_file << "FOLLOW:" << std::endl;
+        for (const auto &set : _follows)
+        {
+            std::string follows;
+            follows +=  set.first + ": ";
+            for (const auto &item : set.second)
+                follows += item.value + ", ";
+            follows.erase(follows.end() - 2, follows.end());
+            out_file << follows << std::endl;
+        }
+
+        out_file.close();
     }
 }
 }
