@@ -1,8 +1,8 @@
 //
 //  main.cpp
-//  afj-assignment-2
+//  afj-assignment-4
 //
-//  Created by Martin Kiesel on 11/03/16.
+//  Created by Martin Kiesel on 20/05/16.
 //  Copyright © 2016 Martin Kiesel. All rights reserved.
 //
 
