@@ -14,7 +14,7 @@
 #include "lib/grammar.hpp"
 
 const std::string INPUT_FILE = "./jflap-grammar2.jff";
-const std::string OUTPUT_FILE = "./out.ctf";
+const std::string OUTPUT_FILE = "./rules.ctf";
 
 void showHelp(char *s);
 uint loadAutomata(afj_4::grammar::Grammar &grammar, const std::string &in);
@@ -100,7 +100,6 @@ void showHelp(char *s)
     cout << "option:  " << "-h  show help" << endl;
     cout << "         " << "-i  [FILE] input file (xml format) / default \"" << INPUT_FILE << "\"" << endl;
     cout << "         " << "-o  [FILE] output file (xml format) / default \"" << OUTPUT_FILE << "\"" << endl;
-    cout << "         " << "-v  verbose output (more output while generating FIRST and FOLLOW)" << endl;
     //cout << "         " << "-w  [WORD] input word (epsilon character is SPACE)" << endl;
     cout << "         " << "WARNING: output file is always REWRITTEN" << endl;
     cout << endl;
