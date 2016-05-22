@@ -31,7 +31,7 @@ namespace types
                 is_empty = true;
         std::string value = "";
 
-        Terminal() : value(EPSILON), is_epsilon(true), is_empty(false) {};
+        Terminal() : value(EPSILON), is_epsilon(true), is_empty(true) {}; // < err
         Terminal(const std::string &value, bool epsilon = false) :
                 value(value),
                 is_epsilon(epsilon),
@@ -103,15 +103,15 @@ namespace types
         {
             terminal = Terminal();
             nonterminal = Nonterminal();
-        };
+        }
         Unional(const Terminal &terminal) : terminal(terminal)
         {
             type = TERMINAL;
-        };
+        }
         Unional(const Nonterminal &nonterminal) : nonterminal(nonterminal)
         {
             type = NONTERMINAL;
-        };
+        }
 
         const std::string getValue() const
         {
@@ -124,17 +124,18 @@ namespace types
             terminal = _terminal;
             nonterminal = Nonterminal();
             type = TERMINAL;
-        };
+        }
         void setNonterminal(const Nonterminal &_nonterminal)
         {
             terminal = Terminal();
             nonterminal = _nonterminal;
             type = NONTERMINAL;
-        };
-    private:
-        //Unional();
-        //Unional& operator=(const Unional&);
-        //Unional(const Unional&);
+        }
+
+        bool isEpsilon() const
+        {
+            return (type == TERMINAL && terminal.is_epsilon && !terminal.is_empty);
+        }
     };
 
     typedef std::vector<Unional> Unionals;
@@ -214,6 +215,7 @@ namespace types
     };
 
     typedef std::vector<Rule> Rules;
+    typedef std::map<std::string, std::map<std::string, int>> DecompositionTable;
 
 }
 }

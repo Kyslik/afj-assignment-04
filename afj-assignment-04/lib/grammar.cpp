@@ -158,6 +158,9 @@ namespace grammar
                         for (const auto &first : _firsts[next_unional_value])
                             if (!first.is_epsilon)
                                 insertInFollow(_follows[nonterminal], first, nonterminal);
+                            else
+                                for (const auto &f : _follows[next_unional_value])
+                                    insertInFollow(_follows[nonterminal], f, nonterminal);
 
                         if (_firsts[next_unional_value].find(types::Terminal(EPSILON, true)) == _firsts[nonterminal].end())
                             for (const auto &terminal : terminal_set)
@@ -192,6 +195,50 @@ namespace grammar
         }
     }
 
+    bool Grammar::computeDecompositionTable()
+    {
+        for (const auto &nonterminal : _nonterminals)
+            for (const auto &terminal : _terminals)
+                _decomposition_table[nonterminal][terminal] = -1;
+
+        for (uint i = 0; i < _rules.size(); i++)
+        {
+            std::string nonterminal = _rules[i].left.value;
+            bool has_epsilon = false;
+
+            for (const auto &unional : _rules[i].right.unionals)
+            {
+                if (has_epsilon) break;
+                has_epsilon = unional.isEpsilon();
+            }
+
+            if (has_epsilon)
+            {
+                for (const auto &follow : _follows[nonterminal])
+                {
+                    if (_decomposition_table[nonterminal][follow.value] == i) continue;
+                    if (_decomposition_table[nonterminal][follow.value] == -1)
+                        _decomposition_table[nonterminal][follow.value] = i;
+                    else
+                        return false;
+                }
+            }
+            else
+            {
+                for (const auto &first : _firsts[nonterminal])
+                {
+                    if (_decomposition_table[nonterminal][first.value] == i) continue;
+                    if (first.is_epsilon) continue;
+                    if (_decomposition_table[nonterminal][first.value] == -1)
+                        _decomposition_table[nonterminal][first.value] = i;
+                    else
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
     void Grammar::writeToFile(const std::string &output)
     {
         std::cout << "Writing to file \"" << output << "\"..." << std::endl;
@@ -221,6 +268,20 @@ namespace grammar
                 follows += item.value + ", ";
             follows.erase(follows.end() - 2, follows.end());
             out_file << follows << std::endl;
+        }
+        out_file << std::endl;
+        
+        for (const auto &nonterminal_row : _decomposition_table)
+        {
+            out_file << nonterminal_row.first << ": ";
+            for (const auto &rule : nonterminal_row.second)
+            {
+                if (rule.second == -1)
+                    out_file << rule.first << " - /, ";
+                else
+                    out_file << rule.first << " - " << rule.second+1 << ", ";
+            }
+            out_file << std::endl;
         }
 
         out_file.close();

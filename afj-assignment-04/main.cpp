@@ -49,9 +49,6 @@ int main (int argc, char *argv[])
             case 'o':
                 output_file = strdup(optarg);
                 break;
-//            case 'w':
-//                word = strdup(optarg);
-//                break;
             default:
                 showHelp(argv[0]);
                 break;
@@ -86,6 +83,10 @@ int main (int argc, char *argv[])
     grammar.computeFollow();
     grammar.displayFollow();
 
+    if (!grammar.computeDecompositionTable())
+        std::cout << "Grammar is not in form of LL(1)." << std::endl;
+    else
+        std::cout << "Grammar is in form of LL(1), decomposition table is written in output file." << std::endl;
     grammar.writeToFile(output_file);
 
     return 0;
@@ -100,7 +101,6 @@ void showHelp(char *s)
     cout << "option:  " << "-h  show help" << endl;
     cout << "         " << "-i  [FILE] input file (xml format) / default \"" << INPUT_FILE << "\"" << endl;
     cout << "         " << "-o  [FILE] output file (xml format) / default \"" << OUTPUT_FILE << "\"" << endl;
-    //cout << "         " << "-w  [WORD] input word (epsilon character is SPACE)" << endl;
     cout << "         " << "WARNING: output file is always REWRITTEN" << endl;
     cout << endl;
     cout << endl;

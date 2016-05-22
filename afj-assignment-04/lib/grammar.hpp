@@ -31,6 +31,8 @@ namespace afj_4
             StringSet   _terminals,
                         _nonterminals;
 
+            types::DecompositionTable _decomposition_table;
+
             bool insertInTerminalSet(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
             bool insertInFirst(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
             bool insertInFollow(types::TerminalSet &terminal_set, const types::Terminal &terminal, const std::string &in);
@@ -57,7 +59,7 @@ namespace afj_4
             void displayFirst();
             void computeFollow();
             void displayFollow();
-
+            bool computeDecompositionTable();
             void writeToFile(const std::string &output);
         };
     }

@@ -67,7 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-i ./jflap-grammar3.jff"
+            argument = "-i ./jflap-grammar5.jff"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

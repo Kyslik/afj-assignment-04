@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501FD1C01CF2531D008B6A26 /* jflap-grammar5.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 501FD1BF1CF25312008B6A26 /* jflap-grammar5.jff */; };
 		504ED1C01CDF63C5003C7E30 /* grammar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504ED1BE1CDF63C5003C7E30 /* grammar.cpp */; };
 		504ED1C21CDFABCF003C7E30 /* jflap-grammar.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 504ED1C11CDFABC4003C7E30 /* jflap-grammar.jff */; };
 		5080B2541CE080BE00CBFECD /* jflap-grammar2.jff in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5080B2531CE080B400CBFECD /* jflap-grammar2.jff */; };
@@ -22,6 +23,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				501FD1C01CF2531D008B6A26 /* jflap-grammar5.jff in CopyFiles */,
 				5080B2581CE0E20200CBFECD /* jflap-grammar4.jff in CopyFiles */,
 				5080B2561CE08A9A00CBFECD /* jflap-grammar3.jff in CopyFiles */,
 				5080B2541CE080BE00CBFECD /* jflap-grammar2.jff in CopyFiles */,
@@ -32,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		501FD1BF1CF25312008B6A26 /* jflap-grammar5.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-grammar5.jff"; path = "afj-assignment-04/data/jflap-grammar5.jff"; sourceTree = "<group>"; };
 		504ED1BE1CDF63C5003C7E30 /* grammar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grammar.cpp; sourceTree = "<group>"; };
 		504ED1BF1CDF63C5003C7E30 /* grammar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grammar.hpp; sourceTree = "<group>"; };
 		504ED1C11CDFABC4003C7E30 /* jflap-grammar.jff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "jflap-grammar.jff"; path = "afj-assignment-04/data/jflap-grammar.jff"; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		50CBDF811CA43C1400838044 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				501FD1BF1CF25312008B6A26 /* jflap-grammar5.jff */,
 				5080B2571CE0E1F800CBFECD /* jflap-grammar4.jff */,
 				5080B2551CE08A8D00CBFECD /* jflap-grammar3.jff */,
 				5080B2531CE080B400CBFECD /* jflap-grammar2.jff */,
